@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
-    public static IState CurrentState;
+    public static IState CurrentState { get; private set; }
 
     private void Awake()
     {

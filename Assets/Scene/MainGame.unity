@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 123467554}
   - component: {fileID: 123467555}
   - component: {fileID: 123467556}
+  - component: {fileID: 123467557}
   m_Layer: 0
   m_Name: Playing State
   m_TagString: Untagged
@@ -173,6 +174,7 @@ MonoBehaviour:
   playingStateComponents:
   - {fileID: 123467555}
   - {fileID: 123467556}
+  - {fileID: 123467557}
 --- !u!114 &123467555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +207,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelController: {fileID: 741024732}
   enemyParent: {fileID: 764898943}
+--- !u!114 &123467557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123467552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b246adaa1ba21b749819c2fd4e4a8990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerShooting: {fileID: 1081777804}
 --- !u!1 &258296483
 GameObject:
   m_ObjectHideFlags: 0
