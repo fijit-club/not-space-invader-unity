@@ -5,8 +5,10 @@ using UnityEngine;
 /// <summary>
 /// This script defines 'Enemy's' health and behavior. 
 /// </summary>
-public class Enemy : MonoBehaviour {
-
+public class Enemy : MonoBehaviour
+{
+    public Transform projectileParent;
+    
     #region FIELDS
     [Tooltip("Health points in integer")]
     public int health;
@@ -32,7 +34,7 @@ public class Enemy : MonoBehaviour {
     {
         if (Random.value < (float)shotChance / 100)                             //if random value less than shot probability, making a shot
         {                         
-            Instantiate(Projectile,  gameObject.transform.position, Quaternion.identity);             
+            Instantiate(Projectile,  gameObject.transform.position, Quaternion.identity, projectileParent);             
         }
     }
 

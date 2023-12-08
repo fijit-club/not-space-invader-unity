@@ -18,8 +18,11 @@ public class Shooting
     public float shotTimeMin, shotTimeMax;
 }
 
-public class Wave : MonoBehaviour {
+public class Wave : MonoBehaviour
+{
 
+    public Transform parent;
+    
     #region FIELDS
     [Tooltip("Enemy's prefab")]
     public GameObject enemy;
@@ -60,7 +63,8 @@ public class Wave : MonoBehaviour {
         for (int i = 0; i < count; i++) 
         {
             GameObject newEnemy;
-            newEnemy = Instantiate(enemy, enemy.transform.position, Quaternion.identity);
+            newEnemy = Instantiate(enemy, enemy.transform.position, Quaternion.identity, parent);
+            newEnemy.GetComponent<Enemy>().projectileParent = parent;
             FollowThePath followComponent = newEnemy.GetComponent<FollowThePath>(); 
             followComponent.path = pathPoints;         
             followComponent.speed = speed;        

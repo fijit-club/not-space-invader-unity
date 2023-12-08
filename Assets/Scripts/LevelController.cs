@@ -27,9 +27,12 @@ public class LevelController : MonoBehaviour {
     public float planetsSpeed;
     List<GameObject> planetsList = new List<GameObject>();
 
-    Camera mainCamera;   
+    Camera mainCamera;
 
-    private void Start()
+    [SerializeField] private Transform enemyParent;
+    
+    
+    public void StartWaves()
     {
         mainCamera = Camera.main;
         //for each element in 'enemyWaves' array creating coroutine which generates the wave
@@ -47,7 +50,10 @@ public class LevelController : MonoBehaviour {
         if (delay != 0)
             yield return new WaitForSeconds(delay);
         if (Player.instance != null)
-            Instantiate(Wave);
+        {
+            GameObject wave = Instantiate(Wave, enemyParent);
+            wave.GetComponent<Wave>().parent = enemyParent;
+        }
     }
 
     //endless coroutine generating 'levelUp' bonuses. 
@@ -62,7 +68,8 @@ public class LevelController : MonoBehaviour {
                 new Vector2(
                     Random.Range(PlayerMoving.instance.borders.minX, PlayerMoving.instance.borders.maxX), 
                     mainCamera.ViewportToWorldPoint(Vector2.up).y + powerUp.GetComponent<Renderer>().bounds.size.y / 2), 
-                Quaternion.identity
+                Quaternion.identity,
+                enemyParent
                 );
         }
     }
