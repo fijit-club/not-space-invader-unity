@@ -32,18 +32,33 @@ public class LevelController : MonoBehaviour {
     [SerializeField] private Transform enemyParent;
 
     private int _currentWaveNumber;
-    
+
+    private void OnDisable()
+    {
+        CancelInvoke(nameof(SpawnWave));
+    }
+
     public void StartWaves(int waveNumber)
     {
         _currentWaveNumber = waveNumber;
         mainCamera = Camera.main;
         //for each element in 'enemyWaves' array creating coroutine which generates the wave
-        for (int i = waveNumber; i<enemyWaves.Length; i++) 
-        {
-            StartCoroutine(CreateEnemyWave(enemyWaves[i].timeToStart, enemyWaves[i].wave));
-        }
+        // for (int i = waveNumber; i<enemyWaves.Length; i++) 
+        // {
+        //     StartCoroutine(CreateEnemyWave(enemyWaves[i].timeToStart, enemyWaves[i].wave));
+        // }
+        
+        InvokeRepeating(nameof(SpawnWave), .1f, 5f);
         StartCoroutine(PowerupBonusCreation());
         StartCoroutine(PlanetsCreation());
+    }
+
+    private void SpawnWave()
+    {
+        int i = Random.Range(0, enemyWaves.Length);
+        
+        GameObject wave = Instantiate(enemyWaves[i].wave, enemyParent);
+        wave.GetComponent<Wave>().parent = enemyParent;
     }
     
     //Create a new wave after a delay
@@ -56,12 +71,6 @@ public class LevelController : MonoBehaviour {
             GameObject wave = Instantiate(Wave, enemyParent);
             wave.GetComponent<Wave>().parent = enemyParent;
             _currentWaveNumber++;
-
-            if (_currentWaveNumber >= enemyWaves.Length)
-            {
-                print("RESTART WAVES");
-                StartWaves(9);
-            }
         }
     }
 

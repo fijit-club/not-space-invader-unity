@@ -142,9 +142,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   enemy: {fileID: 1373690366928948, guid: fdaaab53a8b4c0143b19d2a2e4007e44, type: 3}
-  count: 6
+  count: 9
   speed: 30
-  timeBetween: 0.5
+  timeBetween: 0.4
   pathPoints:
   - {fileID: 4858740230125270}
   - {fileID: 4763388724871704}

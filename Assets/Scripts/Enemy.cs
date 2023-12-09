@@ -26,16 +26,13 @@ public class Enemy : MonoBehaviour
     
     private void Start()
     {
-        Invoke("ActivateShooting", Random.Range(shotTimeMin, shotTimeMax));
+        Invoke("ActivateShooting", shotTimeMin);
     }
 
     //coroutine making a shot
-    void ActivateShooting() 
+    void ActivateShooting()
     {
-        if (Random.value < (float)shotChance / 100)                             //if random value less than shot probability, making a shot
-        {
-            Instantiate(Projectile,  transform.position, Quaternion.identity, projectileParent);             
-        }
+        Instantiate(Projectile, transform.position, Quaternion.identity, projectileParent);
     }
 
     //method of getting damage for the 'Enemy'

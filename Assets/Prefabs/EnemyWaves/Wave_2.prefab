@@ -80,9 +80,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   enemy: {fileID: 1373690366928948, guid: fdaaab53a8b4c0143b19d2a2e4007e44, type: 3}
-  count: 6
+  count: 9
   speed: 30
-  timeBetween: 0.5
+  timeBetween: 0.4
   pathPoints:
   - {fileID: 4718107353931852}
   - {fileID: 4885918754772142}
@@ -93,7 +93,7 @@ MonoBehaviour:
   shooting:
     shotChance: 100
     shotTimeMin: 0.6
-    shotTimeMax: 2.6
+    shotTimeMax: 0.9
   testMode: 0
 --- !u!1 &1798819812210940
 GameObject:
