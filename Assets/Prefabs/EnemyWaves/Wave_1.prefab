@@ -155,5 +155,5 @@ MonoBehaviour:
   shooting:
     shotChance: 100
     shotTimeMin: 0.6
-    shotTimeMax: 2.6
+    shotTimeMax: 0.9
   testMode: 0

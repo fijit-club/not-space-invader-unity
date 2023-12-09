@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public int shotChance; //probability of 'Enemy's' shooting during tha path
     [HideInInspector] public float shotTimeMin, shotTimeMax; //max and min time for shooting from the beginning of the path
     #endregion
-
+    
     private void Start()
     {
         Invoke("ActivateShooting", Random.Range(shotTimeMin, shotTimeMax));
@@ -33,8 +33,8 @@ public class Enemy : MonoBehaviour
     void ActivateShooting() 
     {
         if (Random.value < (float)shotChance / 100)                             //if random value less than shot probability, making a shot
-        {                         
-            Instantiate(Projectile,  gameObject.transform.position, Quaternion.identity, projectileParent);             
+        {
+            Instantiate(Projectile,  transform.position, Quaternion.identity, projectileParent);             
         }
     }
 
