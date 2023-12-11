@@ -7,7 +7,6 @@ public class ShipProperties : InGameComponents
     [SerializeField] private PlayerShooting playerShooting;
     [SerializeField] private DefaultShoot defaultShoot;
     
-    
     public override void EnteredState()
     {
         playerShooting.shooting = defaultShoot;
