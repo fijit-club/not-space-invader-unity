@@ -12,5 +12,10 @@ public abstract class ShootingType : MonoBehaviour
         guns.centralGunVFX = guns.centralGun.GetComponent<ParticleSystem>();
     }
 
+    protected static void CreateLaserShot(GameObject laser, Vector3 pos, Vector3 rot)
+    {
+        Instantiate(laser, pos, Quaternion.Euler(rot));
+    }
+
     public abstract void Shoot();
 }

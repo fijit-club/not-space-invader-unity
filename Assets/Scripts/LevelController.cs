@@ -20,8 +20,6 @@ public class LevelController : MonoBehaviour {
     //Serializable classes implements
     public EnemyWaves[] enemyWaves; 
 
-    public GameObject powerUp;
-    public float timeForNewPowerup;
     public GameObject[] planets;
     public float timeBetweenPlanets;
     public float planetsSpeed;
@@ -49,7 +47,6 @@ public class LevelController : MonoBehaviour {
         // }
         
         InvokeRepeating(nameof(SpawnWave), .1f, 5f);
-        StartCoroutine(PowerupBonusCreation());
         StartCoroutine(PlanetsCreation());
     }
 
@@ -71,24 +68,6 @@ public class LevelController : MonoBehaviour {
             GameObject wave = Instantiate(Wave, enemyParent);
             wave.GetComponent<Wave>().parent = enemyParent;
             _currentWaveNumber++;
-        }
-    }
-
-    //endless coroutine generating 'levelUp' bonuses. 
-    IEnumerator PowerupBonusCreation() 
-    {
-        while (true) 
-        {
-            yield return new WaitForSeconds(timeForNewPowerup);
-            Instantiate(
-                powerUp,
-                //Set the position for the new bonus: for X-axis - random position between the borders of 'Player's' movement; for Y-axis - right above the upper screen border 
-                new Vector2(
-                    Random.Range(PlayerMoving.instance.borders.minX, PlayerMoving.instance.borders.maxX), 
-                    mainCamera.ViewportToWorldPoint(Vector2.up).y + powerUp.GetComponent<Renderer>().bounds.size.y / 2), 
-                Quaternion.identity,
-                enemyParent
-                );
         }
     }
 
