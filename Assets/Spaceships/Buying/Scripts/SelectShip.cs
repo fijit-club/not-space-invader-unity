@@ -54,12 +54,10 @@ public class SelectShip : MonoBehaviour
 
     public void CheckShips()
     {
-        for (int i = _currentIndex; i < spaceships.Length; i++)
+        for (int i = 1; i < spaceships.Length; i++)
         {
             if (spaceships[i].id == spaceships[_currentIndex].id)
                 spaceships[_currentIndex].purchased = true;
-            else
-                spaceships[_currentIndex].purchased = false;
         }
     }
     

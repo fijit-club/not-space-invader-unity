@@ -75,6 +75,7 @@ namespace NotSpaceInvaders
         public PlayerInfo thisPlayerInfo;
         private static Bridge instance;
         public int coinsCollected = 0;
+        [SerializeField] private SelectShip selectShip;
         
         
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -217,6 +218,9 @@ namespace NotSpaceInvaders
                 Silence("true");
 
             }
+            
+            selectShip.CheckShips();
+            
             //Replay();
             //Events.CoinsCountChanged.Call();
         }
