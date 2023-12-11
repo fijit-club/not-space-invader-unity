@@ -9,9 +9,11 @@ public class BasicMainMenuComponents : InGameComponents
     [SerializeField] private MonoBehaviour[] componentsToEnable;
     [SerializeField] private GameObject[] gameObjectsToDisable;
     [SerializeField] private MonoBehaviour[] componentsToDisable;
-
+    [SerializeField] private SelectShip selectShip;
+    
     private bool _gameStarted;
     private Vector3 _playerInitLocation;
+    
     public override void EnteredState()
     {
         if (!_gameStarted)
@@ -19,6 +21,8 @@ public class BasicMainMenuComponents : InGameComponents
             _gameStarted = true;
             _playerInitLocation = player.transform.position;
         }
+        
+        selectShip.UpdateProperties();
         
         player.SetActive(true);
         player.transform.position = _playerInitLocation;

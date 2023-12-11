@@ -22,6 +22,16 @@ public class PlayerMoving : MonoBehaviour {
     bool controlIsActive = false; 
 
     public static PlayerMoving instance; //unique instance of the script for easy access to the script
+    
+    public void TapAreaPressed()
+    {
+        controlIsActive = true;
+    }
+
+    public void TouchLeave()
+    {
+        controlIsActive = false;
+    }
 
     private void Awake()
     {
@@ -42,7 +52,7 @@ public class PlayerMoving : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)) controlIsActive = true;
+        //if (Input.GetMouseButtonDown(0)) controlIsActive = true;
         
         if (controlIsActive)
         {
