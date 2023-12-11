@@ -36,9 +36,9 @@ public class LevelController : MonoBehaviour {
         CancelInvoke(nameof(SpawnWave));
     }
 
-    public void StartWaves(int waveNumber)
+    public void StartWaves()
     {
-        _currentWaveNumber = waveNumber;
+        _currentWaveNumber = 0;
         mainCamera = Camera.main;
         //for each element in 'enemyWaves' array creating coroutine which generates the wave
         // for (int i = waveNumber; i<enemyWaves.Length; i++) 

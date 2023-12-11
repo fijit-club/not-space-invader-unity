@@ -61,7 +61,7 @@ MonoBehaviour:
   pathColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   shooting:
     shotChance: 100
-    shotTimeMin: 1.1
+    shotTimeMin: 0.6
     shotTimeMax: 0.9
   testMode: 0
 --- !u!1 &1459633296034802

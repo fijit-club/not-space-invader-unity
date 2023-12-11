@@ -7,7 +7,7 @@ public class WavesManager : InGameComponents
     
     public override void EnteredState()
     {
-        levelController.StartWaves(0);
+        levelController.StartWaves();
     }
 
     public override void LeftState()
