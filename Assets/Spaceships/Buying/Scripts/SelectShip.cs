@@ -17,6 +17,7 @@ public class SelectShip : MonoBehaviour
     [SerializeField] private GameObject buyArea;
     [SerializeField] private TMP_Text buyText;
     [SerializeField] private Animator visual;
+    [SerializeField] private TMP_Text coinsText;
     
     private int _currentIndex;
 
@@ -53,6 +54,7 @@ public class SelectShip : MonoBehaviour
         Bridge.GetInstance().BuySpaceship(currentSpaceship.id);
 
         currentSpaceship.purchased = true;
+        coinsText.text = Bridge.GetInstance().thisPlayerInfo.coins.ToString();
         
         UpdateProperties();
     }
@@ -64,6 +66,8 @@ public class SelectShip : MonoBehaviour
             if (spaceships[i].id == spaceships[_currentIndex].id)
                 spaceships[_currentIndex].purchased = true;
         }
+
+        coinsText.text = Bridge.GetInstance().thisPlayerInfo.coins.ToString();
     }
 
     public void ChangeSprite()
