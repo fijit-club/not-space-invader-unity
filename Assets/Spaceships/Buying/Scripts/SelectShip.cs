@@ -10,11 +10,13 @@ public class SelectShip : MonoBehaviour
     public Spaceship currentSpaceship;
     
     [SerializeField] private SpriteRenderer spaceShipImage;
+    [SerializeField] private SpriteRenderer spaceShipVisual;
     [SerializeField] private GameObject playImage;
     [SerializeField] private GameObject abilityButton;
     [SerializeField] private TMP_Text shipText;
     [SerializeField] private GameObject buyArea;
     [SerializeField] private TMP_Text buyText;
+    [SerializeField] private Animator visual;
     
     private int _currentIndex;
 
@@ -30,6 +32,8 @@ public class SelectShip : MonoBehaviour
         else
             _currentIndex = 0;
         
+        visual.Play("MoveRight", -1, 0f);
+        
         UpdateProperties();
     }
 
@@ -40,6 +44,7 @@ public class SelectShip : MonoBehaviour
         else
             _currentIndex = spaceships.Length - 1;
         
+        visual.Play("MoveLeft", -1, 0f);
         UpdateProperties();
     }
 
@@ -60,12 +65,17 @@ public class SelectShip : MonoBehaviour
                 spaceships[_currentIndex].purchased = true;
         }
     }
+
+    public void ChangeSprite()
+    {
+        spaceShipVisual.sprite = currentSpaceship.sprite;
+    }
     
     public void UpdateProperties()
     {
-        spaceShipImage.sprite = spaceships[_currentIndex].sprite;
-
         currentSpaceship = spaceships[_currentIndex];
+        
+        spaceShipImage.sprite = currentSpaceship.sprite;
 
         List<NotSpaceInvaders.Spaceship> spaceshipsData = Bridge.GetInstance().thisPlayerInfo.data.spaceships;
 
