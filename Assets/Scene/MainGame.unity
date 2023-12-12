@@ -375,7 +375,6 @@ MonoBehaviour:
   gameObjectsToEnable:
   - {fileID: 741024730}
   - {fileID: 1960451183}
-  - {fileID: 1415156683}
   inGameUI: {fileID: 528816594}
   componentsToEnable:
   - {fileID: 1081777804}
