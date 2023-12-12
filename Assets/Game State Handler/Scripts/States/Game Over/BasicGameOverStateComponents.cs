@@ -8,8 +8,12 @@ public class BasicGameOverStateComponents : InGameComponents
     [SerializeField] private GameObject[] gameObjectsToDisable;
     [SerializeField] private MonoBehaviour[] componentsToDisable;
 
+    [SerializeField] private LevelController levelController;
+    
+    
     public override void EnteredState()
     {
+        levelController.StopInvoke();
         foreach (var go in gameObjectsToEnable)
             go.SetActive(true);
         

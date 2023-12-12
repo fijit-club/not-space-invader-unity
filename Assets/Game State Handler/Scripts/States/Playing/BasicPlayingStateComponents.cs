@@ -4,12 +4,15 @@ using UnityEngine;
 public class BasicPlayingStateComponents : InGameComponents
 {
     [SerializeField] private GameObject[] gameObjectsToEnable;
+    [SerializeField] private GameObject inGameUI;
+    
     [SerializeField] private MonoBehaviour[] componentsToEnable;
     [SerializeField] private GameObject[] gameObjectsToDisable;
     [SerializeField] private MonoBehaviour[] componentsToDisable;
     
     public override void EnteredState()
     {
+        inGameUI.SetActive(true);
         foreach (var go in gameObjectsToEnable)
             go.SetActive(true);
 

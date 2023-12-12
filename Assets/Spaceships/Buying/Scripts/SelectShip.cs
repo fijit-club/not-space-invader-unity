@@ -18,6 +18,7 @@ public class SelectShip : MonoBehaviour
     [SerializeField] private TMP_Text buyText;
     [SerializeField] private Animator visual;
     [SerializeField] private TMP_Text coinsText;
+    [SerializeField] private TMP_Text shipCostCoinsText;
     
     private int _currentIndex;
 
@@ -104,7 +105,7 @@ public class SelectShip : MonoBehaviour
             
             if (Bridge.GetInstance().thisPlayerInfo.coins >= currentSpaceship.coinsRequired)
             {
-                buyText.text = "Not purchased";
+                buyText.text = "Tap to Purchase";
                 buyArea.SetActive(true);
             }
             else
@@ -112,6 +113,7 @@ public class SelectShip : MonoBehaviour
                 buyText.text = "Not enough coins";
                 buyArea.SetActive(false);
             }
+            shipCostCoinsText.text = currentSpaceship.coinsRequired.ToString();
 
         }
     }

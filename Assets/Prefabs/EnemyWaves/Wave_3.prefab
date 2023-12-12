@@ -157,3 +157,4 @@ MonoBehaviour:
     shotTimeMin: 0.6
     shotTimeMax: 0.9
   testMode: 0
+  enemySpeed: 10

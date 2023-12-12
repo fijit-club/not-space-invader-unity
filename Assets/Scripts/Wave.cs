@@ -53,6 +53,8 @@ public class Wave : MonoBehaviour
     public bool testMode;
     #endregion
 
+    public float enemySpeed;
+
     private void Start()
     {
         StartCoroutine(CreateEnemyWave()); 
@@ -71,7 +73,8 @@ public class Wave : MonoBehaviour
             followComponent.rotationByPath = rotationByPath;
             followComponent.loop = Loop;
             followComponent.SetPath(); 
-            Enemy enemyComponent = newEnemy.GetComponent<Enemy>();  
+            Enemy enemyComponent = newEnemy.GetComponent<Enemy>();
+            enemyComponent.speed = enemySpeed;
             enemyComponent.shotChance = shooting.shotChance; 
             enemyComponent.shotTimeMin = shooting.shotTimeMin; 
             enemyComponent.shotTimeMax = shooting.shotTimeMax;

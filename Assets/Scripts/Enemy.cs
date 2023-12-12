@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public int shotChance; //probability of 'Enemy's' shooting during tha path
     [HideInInspector] public float shotTimeMin, shotTimeMax; //max and min time for shooting from the beginning of the path
     #endregion
+
+    public float speed;
     
     private void Start()
     {
@@ -32,7 +34,8 @@ public class Enemy : MonoBehaviour
     //coroutine making a shot
     void ActivateShooting()
     {
-        Instantiate(Projectile, transform.position, Quaternion.identity, projectileParent);
+        var proj = Instantiate(Projectile, transform.position, Quaternion.identity, projectileParent);
+        proj.GetComponent<DirectMoving>().speed = speed;
     }
 
     //method of getting damage for the 'Enemy'
@@ -61,6 +64,7 @@ public class Enemy : MonoBehaviour
     void Destruction()                           
     {        
         Instantiate(destructionVFX, transform.position, Quaternion.identity); 
+        LevelController.Coins++;
         Destroy(gameObject);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 #region Serializable classes
@@ -15,8 +16,16 @@ public class EnemyWaves
 
 #endregion
 
-public class LevelController : MonoBehaviour {
+public class LevelController : MonoBehaviour
+{
 
+    public int score;
+    public int coins;
+    public static int Coins;
+    
+    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text coinText;
+    
     //Serializable classes implements
     public EnemyWaves[] enemyWaves; 
 
@@ -31,13 +40,40 @@ public class LevelController : MonoBehaviour {
 
     private int _currentWaveNumber;
 
+    [SerializeField] private float bulletSpeed;
+    [SerializeField] private float speedIncrementAmount;
+    [SerializeField] private float maxBulletSpeed;
+
+    public void StopInvoke()
+    {
+        CancelInvoke(nameof(IncreaseScore));
+    }
+    
+    public void ResetSpeed()
+    {
+        bulletSpeed = 10f;
+        score = 0;
+        Coins = 0;
+        scoreText.text = "Score: " + score;
+    }
+    
     private void OnDisable()
     {
         CancelInvoke(nameof(SpawnWave));
     }
 
+    private void IncreaseScore()
+    {
+        score++;
+        coins = Coins;
+        coinText.text = "Coins: " + Coins;
+        scoreText.text = "Score: " + score;
+    }
+    
     public void StartWaves()
     {
+        InvokeRepeating(nameof(IncreaseScore), .1f, .1f);
+        
         _currentWaveNumber = 0;
         mainCamera = Camera.main;
         //for each element in 'enemyWaves' array creating coroutine which generates the wave
@@ -55,7 +91,12 @@ public class LevelController : MonoBehaviour {
         int i = Random.Range(0, enemyWaves.Length);
         
         GameObject wave = Instantiate(enemyWaves[i].wave, enemyParent);
-        wave.GetComponent<Wave>().parent = enemyParent;
+        Wave waveComp = wave.GetComponent<Wave>();
+        waveComp.parent = enemyParent;
+        waveComp.enemySpeed = bulletSpeed;
+        
+        if (bulletSpeed < maxBulletSpeed)
+            bulletSpeed += speedIncrementAmount;
     }
     
     //Create a new wave after a delay
