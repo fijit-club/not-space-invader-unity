@@ -9,11 +9,13 @@ public class BasicGameOverStateComponents : InGameComponents
     [SerializeField] private MonoBehaviour[] componentsToDisable;
 
     [SerializeField] private LevelController levelController;
+    [SerializeField] private RayShooter rayShooter;
     
     
     public override void EnteredState()
     {
         levelController.StopInvoke();
+        rayShooter.DestroyRay();
         foreach (var go in gameObjectsToEnable)
             go.SetActive(true);
         

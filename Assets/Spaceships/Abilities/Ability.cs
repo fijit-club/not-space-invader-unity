@@ -9,6 +9,7 @@ public class Ability : MonoBehaviour
     [SerializeField] private DefaultShoot defaultShoot;
     [SerializeField] private float abilityTime;
     [SerializeField] private Animator buttonAnim;
+    [SerializeField] private RayShooter rayShooter;
     
     public void TriggerAbility()
     {
@@ -19,5 +20,6 @@ public class Ability : MonoBehaviour
     public void DisableAbility()
     {
         playerShooting.shooting = defaultShoot;
+        rayShooter.DestroyRay();
     }
 }

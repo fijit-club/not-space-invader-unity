@@ -375,6 +375,7 @@ MonoBehaviour:
   gameObjectsToEnable:
   - {fileID: 741024730}
   - {fileID: 1960451183}
+  - {fileID: 1415156683}
   inGameUI: {fileID: 528816594}
   componentsToEnable:
   - {fileID: 1081777804}
@@ -1092,6 +1093,60 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &559133502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 559133503}
+  - component: {fileID: 559133504}
+  m_Layer: 0
+  m_Name: Ray Shooter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &559133503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559133502}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 797248895}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &559133504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559133502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1410e85e9792845bf6531c3505f3b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guns:
+    rightGun: {fileID: 513699997}
+    leftGun: {fileID: 119282866}
+    centralGun: {fileID: 95343485}
+    leftGunVFX: {fileID: 0}
+    rightGunVFX: {fileID: 0}
+    centralGunVFX: {fileID: 0}
+  projectileObject: {fileID: 1413877261856170, guid: 87414b61a66e0274785db7772a51f92f,
+    type: 3}
+  player: {fileID: 1081777810}
 --- !u!1 &577047388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1728,6 +1783,7 @@ Transform:
   - {fileID: 1439640050}
   - {fileID: 1473076730}
   - {fileID: 914361903}
+  - {fileID: 559133503}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2816,6 +2872,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c089f20f9a699574f8238edac2f9da56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1081777810 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4923957858404230, guid: 8e33fda0c220936498f5288af83d7450,
+    type: 3}
+  m_PrefabInstance: {fileID: 271878659}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1117286894
 GameObject:
   m_ObjectHideFlags: 0
@@ -3206,9 +3268,11 @@ MonoBehaviour:
   gameObjectsToDisable:
   - {fileID: 741024730}
   - {fileID: 1081777800}
+  - {fileID: 1415156683}
   componentsToDisable:
   - {fileID: 1081777804}
   levelController: {fileID: 741024732}
+  rayShooter: {fileID: 559133504}
 --- !u!114 &1341141582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3663,6 +3727,7 @@ MonoBehaviour:
   defaultShoot: {fileID: 871639010}
   abilityTime: 5
   buttonAnim: {fileID: 1415156689}
+  rayShooter: {fileID: 559133504}
 --- !u!95 &1415156689
 Animator:
   serializedVersion: 5
@@ -13846,7 +13911,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 494f7e51f524d664ba9252ec7abc332b, type: 3}
     coinsRequired: 5000
     purchased: 0
-    shootingType: {fileID: 1473076731}
+    shootingType: {fileID: 559133504}
   currentSpaceship:
     name: 
     id: 
