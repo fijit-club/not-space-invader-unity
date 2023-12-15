@@ -75,6 +75,7 @@ namespace NotSpaceInvaders
         public PlayerInfo thisPlayerInfo;
         private static Bridge instance;
         public int coinsCollected = 0;
+        [SerializeField] private SelectShip selectShip;
         
         
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -131,7 +132,7 @@ namespace NotSpaceInvaders
             load();
 #endif
                
-                //SendInitialData("{ \"coins\": 6969, \"data\":{\"cars\": [{\"id\": \"default-car\"}]}   }");
+                //SendInitSendInitialData("{ \"coins\": 6969, \"data\":{\"cars\": [{\"id\": \"default-car\"}]}   }");
             }
             else
                 Destroy(this);
@@ -217,6 +218,9 @@ namespace NotSpaceInvaders
                 Silence("true");
 
             }
+            
+            selectShip.CheckShips();
+            
             //Replay();
             //Events.CoinsCountChanged.Call();
         }
@@ -264,24 +268,24 @@ namespace NotSpaceInvaders
 // #endif
 //         }
 
-        public void BuyCar(string carID)
+        public void BuySpaceship(string spaceshipID)
         {
 #if UNITY_WEBGL && !UNITY_EDITOR
-                    buyAsset(carID);
+                    buyAsset(spaceshipID);
 #endif
-            AddCar(carID);
+            AddSpaceship(spaceshipID);
         }
 
-        public void AddCar(string spaceshipID)
+        public void AddSpaceship(string spaceshipID)
         {
-            Spaceship addedCar = new Spaceship(spaceshipID);
-            addedCar.id = spaceshipID;
+            Spaceship addedSpaceship = new Spaceship(spaceshipID);
+            addedSpaceship.id = spaceshipID;
         
         
         
-            Debug.Log("added new car " + addedCar.id);
+            Debug.Log("added new spaceship " + addedSpaceship.id);
         
-            thisPlayerInfo.data.spaceships.Add(addedCar);
+            thisPlayerInfo.data.spaceships.Add(addedSpaceship);
         }
 
         [ContextMenu("Do Something")]
@@ -293,7 +297,7 @@ namespace NotSpaceInvaders
             //SendInitialData("{\"coins\": 3000,\"data\": null}");
             //Debug.Log(JsonUtility.ToJson( thisPlayerInfo.data));
             //Debug.Log( thisPlayerInfo.data);
-            SendInitialData("{\"coins\":384696,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":949,\"data\":{\"Spaceships\":[{\"id\":\"test-spaceship-1\",\"attributes\":[]},{\"id\":\"test-spaceship-2\",\"attributes\":[]}]}}");
+            SendInitialData("{\"coins\":384696,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":949,\"data\":{\"spaceships\":[{\"id\":\"space-dual-shooter-ship\",\"attributes\":[]},{\"id\":\"test-spaceship-2\",\"attributes\":[]}]}}");
         }
         [ContextMenu("Do Something2")]
         public void SendTextData2()

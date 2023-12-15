@@ -13,6 +13,9 @@ public class Guns
 
 public class PlayerShooting : MonoBehaviour {
 
+    public ShootingType shooting;
+    
+    
     [Tooltip("shooting frequency. the higher the more frequent")]
     public float fireRate;
 
@@ -60,35 +63,37 @@ public class PlayerShooting : MonoBehaviour {
     //method for a shot
     void MakeAShot() 
     {
-        switch (weaponPower) // according to weapon power 'pooling' the defined anount of projectiles, on the defined position, in the defined rotation
-        {
-            case 1:
-                CreateLazerShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
-                guns.centralGunVFX.Play();
-                break;
-            case 2:
-                CreateLazerShot(projectileObject, guns.rightGun.transform.position, Vector3.zero);
-                guns.leftGunVFX.Play();
-                CreateLazerShot(projectileObject, guns.leftGun.transform.position, Vector3.zero);
-                guns.rightGunVFX.Play();
-                break;
-            case 3:
-                CreateLazerShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
-                CreateLazerShot(projectileObject, guns.rightGun.transform.position, new Vector3(0, 0, -5));
-                guns.leftGunVFX.Play();
-                CreateLazerShot(projectileObject, guns.leftGun.transform.position, new Vector3(0, 0, 5));
-                guns.rightGunVFX.Play();
-                break;
-            case 4:
-                CreateLazerShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
-                CreateLazerShot(projectileObject, guns.rightGun.transform.position, new Vector3(0, 0, -5));
-                guns.leftGunVFX.Play();
-                CreateLazerShot(projectileObject, guns.leftGun.transform.position, new Vector3(0, 0, 5));
-                guns.rightGunVFX.Play();
-                CreateLazerShot(projectileObject, guns.leftGun.transform.position, new Vector3(0, 0, 15));
-                CreateLazerShot(projectileObject, guns.rightGun.transform.position, new Vector3(0, 0, -15));
-                break;
-        }
+        // switch (weaponPower) // according to weapon power 'pooling' the defined anount of projectiles, on the defined position, in the defined rotation
+        // {
+        //     case 1:
+        //         CreateLazerShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
+        //         guns.centralGunVFX.Play();
+        //         break;
+        //     case 2:
+        //         CreateLazerShot(projectileObject, guns.rightGun.transform.position, Vector3.zero);
+        //         guns.leftGunVFX.Play();
+        //         CreateLazerShot(projectileObject, guns.leftGun.transform.position, Vector3.zero);
+        //         guns.rightGunVFX.Play();
+        //         break;
+        //     case 3:
+        //         CreateLazerShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
+        //         CreateLazerShot(projectileObject, guns.rightGun.transform.position, new Vector3(0, 0, -5));
+        //         guns.leftGunVFX.Play();
+        //         CreateLazerShot(projectileObject, guns.leftGun.transform.position, new Vector3(0, 0, 5));
+        //         guns.rightGunVFX.Play();
+        //         break;
+        //     case 4:
+        //         CreateLazerShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
+        //         CreateLazerShot(projectileObject, guns.rightGun.transform.position, new Vector3(0, 0, -5));
+        //         guns.leftGunVFX.Play();
+        //         CreateLazerShot(projectileObject, guns.leftGun.transform.position, new Vector3(0, 0, 5));
+        //         guns.rightGunVFX.Play();
+        //         CreateLazerShot(projectileObject, guns.leftGun.transform.position, new Vector3(0, 0, 15));
+        //         CreateLazerShot(projectileObject, guns.rightGun.transform.position, new Vector3(0, 0, -15));
+        //         break;
+        // }
+        
+        shooting.Shoot();
     }
 
     void CreateLazerShot(GameObject lazer, Vector3 pos, Vector3 rot) //translating 'pooled' lazer shot to the defined position in the defined rotation

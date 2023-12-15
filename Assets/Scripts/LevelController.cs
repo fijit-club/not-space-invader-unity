@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 #region Serializable classes
@@ -15,30 +16,87 @@ public class EnemyWaves
 
 #endregion
 
-public class LevelController : MonoBehaviour {
+public class LevelController : MonoBehaviour
+{
 
+    public int score;
+    public int coins;
+    public static int Coins;
+    
+    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text coinText;
+    
     //Serializable classes implements
     public EnemyWaves[] enemyWaves; 
 
-    public GameObject powerUp;
-    public float timeForNewPowerup;
     public GameObject[] planets;
     public float timeBetweenPlanets;
     public float planetsSpeed;
     List<GameObject> planetsList = new List<GameObject>();
 
-    Camera mainCamera;   
+    Camera mainCamera;
 
-    private void Start()
+    [SerializeField] private Transform enemyParent;
+
+    private int _currentWaveNumber;
+
+    [SerializeField] private float bulletSpeed;
+    [SerializeField] private float speedIncrementAmount;
+    [SerializeField] private float maxBulletSpeed;
+
+    public void StopInvoke()
     {
+        CancelInvoke(nameof(IncreaseScore));
+    }
+    
+    public void ResetSpeed()
+    {
+        bulletSpeed = 10f;
+        score = 0;
+        Coins = 0;
+        scoreText.text = "Score: " + score;
+    }
+    
+    private void OnDisable()
+    {
+        CancelInvoke(nameof(SpawnWave));
+    }
+
+    private void IncreaseScore()
+    {
+        score++;
+        coins = Coins;
+        coinText.text = "Coins: " + Coins;
+        scoreText.text = "Score: " + score;
+    }
+    
+    public void StartWaves()
+    {
+        InvokeRepeating(nameof(IncreaseScore), .1f, .1f);
+        
+        _currentWaveNumber = 0;
         mainCamera = Camera.main;
         //for each element in 'enemyWaves' array creating coroutine which generates the wave
-        for (int i = 0; i<enemyWaves.Length; i++) 
-        {
-            StartCoroutine(CreateEnemyWave(enemyWaves[i].timeToStart, enemyWaves[i].wave));
-        }
-        StartCoroutine(PowerupBonusCreation());
+        // for (int i = waveNumber; i<enemyWaves.Length; i++) 
+        // {
+        //     StartCoroutine(CreateEnemyWave(enemyWaves[i].timeToStart, enemyWaves[i].wave));
+        // }
+        
+        InvokeRepeating(nameof(SpawnWave), .1f, 5f);
         StartCoroutine(PlanetsCreation());
+    }
+
+    private void SpawnWave()
+    {
+        int i = Random.Range(0, enemyWaves.Length);
+        
+        GameObject wave = Instantiate(enemyWaves[i].wave, enemyParent);
+        Wave waveComp = wave.GetComponent<Wave>();
+        waveComp.parent = enemyParent;
+        waveComp.enemySpeed = bulletSpeed;
+        
+        if (bulletSpeed < maxBulletSpeed)
+            bulletSpeed += speedIncrementAmount;
     }
     
     //Create a new wave after a delay
@@ -47,23 +105,10 @@ public class LevelController : MonoBehaviour {
         if (delay != 0)
             yield return new WaitForSeconds(delay);
         if (Player.instance != null)
-            Instantiate(Wave);
-    }
-
-    //endless coroutine generating 'levelUp' bonuses. 
-    IEnumerator PowerupBonusCreation() 
-    {
-        while (true) 
         {
-            yield return new WaitForSeconds(timeForNewPowerup);
-            Instantiate(
-                powerUp,
-                //Set the position for the new bonus: for X-axis - random position between the borders of 'Player's' movement; for Y-axis - right above the upper screen border 
-                new Vector2(
-                    Random.Range(PlayerMoving.instance.borders.minX, PlayerMoving.instance.borders.maxX), 
-                    mainCamera.ViewportToWorldPoint(Vector2.up).y + powerUp.GetComponent<Renderer>().bounds.size.y / 2), 
-                Quaternion.identity
-                );
+            GameObject wave = Instantiate(Wave, enemyParent);
+            wave.GetComponent<Wave>().parent = enemyParent;
+            _currentWaveNumber++;
         }
     }
 

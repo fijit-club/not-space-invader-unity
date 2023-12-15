@@ -5,8 +5,10 @@ using UnityEngine;
 /// <summary>
 /// This script defines 'Enemy's' health and behavior. 
 /// </summary>
-public class Enemy : MonoBehaviour {
-
+public class Enemy : MonoBehaviour
+{
+    public Transform projectileParent;
+    
     #region FIELDS
     [Tooltip("Health points in integer")]
     public int health;
@@ -22,18 +24,18 @@ public class Enemy : MonoBehaviour {
     [HideInInspector] public float shotTimeMin, shotTimeMax; //max and min time for shooting from the beginning of the path
     #endregion
 
+    public float speed;
+    
     private void Start()
     {
-        Invoke("ActivateShooting", Random.Range(shotTimeMin, shotTimeMax));
+        Invoke("ActivateShooting", shotTimeMin);
     }
 
     //coroutine making a shot
-    void ActivateShooting() 
+    void ActivateShooting()
     {
-        if (Random.value < (float)shotChance / 100)                             //if random value less than shot probability, making a shot
-        {                         
-            Instantiate(Projectile,  gameObject.transform.position, Quaternion.identity);             
-        }
+        var proj = Instantiate(Projectile, transform.position, Quaternion.identity, projectileParent);
+        proj.GetComponent<DirectMoving>().speed = speed;
     }
 
     //method of getting damage for the 'Enemy'
@@ -62,6 +64,7 @@ public class Enemy : MonoBehaviour {
     void Destruction()                           
     {        
         Instantiate(destructionVFX, transform.position, Quaternion.identity); 
+        LevelController.Coins++;
         Destroy(gameObject);
     }
 }
