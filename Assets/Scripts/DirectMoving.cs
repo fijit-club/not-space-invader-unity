@@ -10,6 +10,8 @@ public class DirectMoving : MonoBehaviour {
     [Tooltip("Moving speed on Y axis in local space")]
     public float speed;
 
+    [SerializeField] private bool followPlayer = true;
+    
     public bool enemy;
 
     private Transform _player;
@@ -18,7 +20,7 @@ public class DirectMoving : MonoBehaviour {
 
     private void Start()
     {
-        if (!enemy) return;
+        if (!enemy || !followPlayer) return;
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         Vector3 difference = _player.position - transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
@@ -30,7 +32,7 @@ public class DirectMoving : MonoBehaviour {
     {
         if (enemy)
         {
-            transform.Translate(transform.InverseTransformDirection(transform.right     * speed * Time.deltaTime)); 
+            transform.Translate(transform.InverseTransformDirection(transform.right * speed * Time.deltaTime)); 
             
             return;
         }

@@ -104,7 +104,7 @@ public class LevelController : MonoBehaviour
         if (bulletSpeed < maxBulletSpeed)
             bulletSpeed += speedIncrementAmount;
 
-        if (i == enemyWaves.Length - 1)
+        if (i == enemyWaves.Length - 1 || i == enemyWaves.Length - 2)
         {
             wavingIndex = 0;
             CancelInvoke(nameof(SpawnWave));
