@@ -40,6 +40,7 @@ public class HugeRayShooterEnemy : EnemyMain
             Destruction();
         else
             Instantiate(hitEffect,transform.position,Quaternion.identity,transform);
+        LevelController.Score += 10;
     }
 
     private void OnDestroy()
@@ -55,7 +56,7 @@ public class HugeRayShooterEnemy : EnemyMain
     private void Destruction()                           
     {        
         Instantiate(destructionVFX, transform.position, Quaternion.identity); 
-        LevelController.Coins++;
+        LevelController.Coins += 5;
         Destroy(gameObject);
     }
 }
