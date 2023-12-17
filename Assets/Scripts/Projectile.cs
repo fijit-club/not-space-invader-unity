@@ -19,19 +19,21 @@ public class Projectile : MonoBehaviour {
 
     public bool ray;
     
+    
     private void OnTriggerEnter2D(Collider2D collision) //when a projectile collides with another object
     {
-        if (enemyBullet && collision.tag == "Player") //if anoter object is 'player' or 'enemy sending the command of receiving the damage
+        if (enemyBullet && collision.CompareTag("Player")) //if anoter object is 'player' or 'enemy sending the command of receiving the damage
         {
             Player.instance.GetDamage(damage); 
             if (destroyedByCollision)
                 Destruction();
         }
-        else if (!enemyBullet && collision.tag == "Enemy")
+        else if (!enemyBullet && collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<Enemy>().GetDamage(damage);
+            collision.GetComponent<EnemyMain>().GetDamage(damage);
             if (destroyedByCollision)
                 Destruction();
+                
         }
     }
 

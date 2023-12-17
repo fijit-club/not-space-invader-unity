@@ -159,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   enemyBullet: 0
-  destroyedByCollision: 1
+  destroyedByCollision: 0
   ray: 1
 --- !u!50 &7978335094015262405
 Rigidbody2D:

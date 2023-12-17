@@ -40,6 +40,8 @@ public class LevelController : MonoBehaviour
 
     private int _currentWaveNumber;
 
+    public int wavingIndex;
+    
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float speedIncrementAmount;
     [SerializeField] private float maxBulletSpeed;
@@ -82,21 +84,36 @@ public class LevelController : MonoBehaviour
         //     StartCoroutine(CreateEnemyWave(enemyWaves[i].timeToStart, enemyWaves[i].wave));
         // }
         
-        InvokeRepeating(nameof(SpawnWave), .1f, 5f);
+        StartSpawning();
+        
         StartCoroutine(PlanetsCreation());
     }
 
+    public void StartSpawning()
+    {
+        InvokeRepeating(nameof(SpawnWave), .1f, 5f);
+        
+    }
+    
     private void SpawnWave()
     {
         int i = Random.Range(0, enemyWaves.Length);
         
         GameObject wave = Instantiate(enemyWaves[i].wave, enemyParent);
-        Wave waveComp = wave.GetComponent<Wave>();
-        waveComp.parent = enemyParent;
-        waveComp.enemySpeed = bulletSpeed;
         
         if (bulletSpeed < maxBulletSpeed)
             bulletSpeed += speedIncrementAmount;
+
+        if (i == enemyWaves.Length - 1)
+        {
+            wavingIndex = 0;
+            CancelInvoke(nameof(SpawnWave));
+            return;
+        }
+        
+        Wave waveComp = wave.GetComponent<Wave>();
+        waveComp.parent = enemyParent;
+        waveComp.enemySpeed = bulletSpeed;
     }
     
     //Create a new wave after a delay
