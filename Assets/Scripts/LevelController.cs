@@ -22,6 +22,7 @@ public class LevelController : MonoBehaviour
     public int score;
     public int coins;
     public static int Coins;
+    public static int Score;
     
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text coinText;
@@ -56,6 +57,7 @@ public class LevelController : MonoBehaviour
         bulletSpeed = 10f;
         score = 0;
         Coins = 0;
+        Score = 0;
         scoreText.text = "Score: " + score;
     }
     
@@ -66,7 +68,7 @@ public class LevelController : MonoBehaviour
 
     private void IncreaseScore()
     {
-        score++;
+        score = Score;
         coins = Coins;
         coinText.text = "Coins: " + Coins;
         scoreText.text = "Score: " + score;

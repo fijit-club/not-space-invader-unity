@@ -55,6 +55,9 @@ public class Enemy : EnemyMain
             Destruction();
         else
             Instantiate(hitEffect,transform.position,Quaternion.identity,transform);
+
+        LevelController.Score += 10;
+
     }    
 
     //if 'Enemy' collides 'Player', 'Player' gets the damage equal to projectile's damage value
