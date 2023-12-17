@@ -6,6 +6,8 @@ public class MoveToLerp : MonoBehaviour
     
     private void Update()
     {
+        to.x = transform.position.x;
+        to.z = transform.position.z;
         transform.position = Vector3.Lerp(transform.position, to, 10f * Time.deltaTime);
     }
 }

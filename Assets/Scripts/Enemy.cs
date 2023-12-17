@@ -11,7 +11,7 @@ using UnityEngine;
 public abstract class EnemyMain : MonoBehaviour
 {
     public int health;
-
+    public Transform projectileParent;
     [Tooltip("VFX prefab generating after destruction")]
     public GameObject destructionVFX;
     public GameObject hitEffect;
@@ -21,7 +21,6 @@ public abstract class EnemyMain : MonoBehaviour
 
 public class Enemy : EnemyMain
 {
-    public Transform projectileParent;
     
     #region FIELDS
 
