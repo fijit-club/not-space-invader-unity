@@ -30,7 +30,8 @@ public class Projectile : MonoBehaviour {
         }
         else if (!enemyBullet && collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<EnemyMain>().GetDamage(damage);
+            List<ContactPoint> list = new List<ContactPoint>();
+            collision.GetComponent<EnemyMain>().GetDamage(damage, collision.ClosestPoint(transform.position));
             if (destroyedByCollision)
                 Destruction();
                 

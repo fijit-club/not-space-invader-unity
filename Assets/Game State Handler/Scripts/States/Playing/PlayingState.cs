@@ -3,15 +3,14 @@ using UnityEngine;
 public class PlayingState : MonoBehaviour, IState
 {
     [SerializeField] private InGameComponents[] playingStateComponents;
-    
-    [SerializeField] private Animator abilityButton;
+    [SerializeField] private AbilitySpawner abilitySpawner;
     
     public void OnEnter()
     {
         foreach (var playingStateComponent in playingStateComponents)
             playingStateComponent.EnteredState();
-        if (abilityButton.gameObject.activeInHierarchy)
-            abilityButton.Play("IDLE", -1, 0f);
+        
+        abilitySpawner.StartSpawning();
     }
 
     public void StateUpdate()
@@ -22,5 +21,7 @@ public class PlayingState : MonoBehaviour, IState
     {
         foreach (var playingStateComponent in playingStateComponents)
             playingStateComponent.LeftState();
+        
+        abilitySpawner.StopSpawning();
     }
 }

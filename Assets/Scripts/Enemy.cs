@@ -16,7 +16,7 @@ public abstract class EnemyMain : MonoBehaviour
     public GameObject destructionVFX;
     public GameObject hitEffect;
 
-    public abstract void GetDamage(int damage);
+    public abstract void GetDamage(int damage, Vector3 position);
 }
 
 public class Enemy : EnemyMain
@@ -47,7 +47,7 @@ public class Enemy : EnemyMain
     }
 
     //method of getting damage for the 'Enemy'
-    public override void GetDamage(int damage) 
+    public override void GetDamage(int damage, Vector3 position) 
     {
         health -= damage;           //reducing health for damage value, if health is less than 0, starting destruction procedure
         if (health <= 0)

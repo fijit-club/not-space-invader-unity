@@ -33,7 +33,7 @@ public class HugeRayShooterEnemy : EnemyMain
         enemyTransform.position = pos;
     }
 
-    public override void GetDamage(int damage)
+    public override void GetDamage(int damage, Vector3 position)
     {
         health -= damage;           //reducing health for damage value, if health is less than 0, starting destruction procedure
         if (health <= 0)

@@ -18,13 +18,13 @@ public class ConstantRotation : EnemyMain
         transform.Rotate(0f, 0f, rotationSpeed * 10f * Time.deltaTime);
     }
 
-    public override void GetDamage(int damage)
+    public override void GetDamage(int damage, Vector3 position)
     {
         health -= damage;           //reducing health for damage value, if health is less than 0, starting destruction procedure
         if (health <= 0)
             Destruction();
         else
-            Instantiate(hitEffect,transform.position,Quaternion.identity,transform);
+            Instantiate(hitEffect, position,Quaternion.identity);
         LevelController.Score += 10;
     }
 
