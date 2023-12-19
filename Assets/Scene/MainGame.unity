@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 258296484}
   - component: {fileID: 258296485}
   m_Layer: 0
-  m_Name: BRIDGE
+  m_Name: Bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisPlayerInfo:
-    coins: 0
+    coins: 50000
     volumeBg: 1
     volumeSfx: 1
     highScore: 0
