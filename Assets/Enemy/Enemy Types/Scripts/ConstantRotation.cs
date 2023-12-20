@@ -16,7 +16,8 @@ public class ConstantRotation : EnemyMain
 
     private void OnDestroy()
     {
-        Destroy(healthBar.gameObject);
+        if (healthBar)
+            Destroy(healthBar.gameObject);
         
         var levelC = FindObjectOfType<LevelController>();
         if (!levelC) return;

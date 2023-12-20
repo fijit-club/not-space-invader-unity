@@ -1,34 +1,5 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// This script defines 'Enemy's' health and behavior. 
-/// </summary>
-///
-///
-
-public abstract class EnemyMain : MonoBehaviour
-{
-    public int maxHealth;
-    public int health;
-    public Transform projectileParent;
-    [Tooltip("VFX prefab generating after destruction")]
-    public GameObject destructionVFX;
-    public GameObject hitEffect;
-    public float projectileSpeed;
-    
-    public Transform healthBar;
-
-    protected void ReduceHealth()
-    {
-        var scale = healthBar.localScale;
-        scale.x -= 1f / maxHealth;
-        if (scale.x > 0f)
-            healthBar.localScale = scale;
-    }
-    
-    public abstract void GetDamage(int damage, Vector3 position);
-}
-
 public class Enemy : EnemyMain
 {
     
@@ -45,6 +16,17 @@ public class Enemy : EnemyMain
     
     private void Start()
     {
+        if (WaveData.WaveNumber > 10)
+        {
+            maxHealth = 3;
+            health = 3;
+        }
+
+        if (WaveData.WaveNumber > 15)
+        {
+            maxHealth = 5;
+            health = 5;
+        }
         Invoke("ActivateShooting", shotTimeMin);
     }
 

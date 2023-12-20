@@ -138,6 +138,8 @@ public class LevelController : MonoBehaviour
         }
         else
             i = Random.Range(0, enemyWaves.Length - 3);
+
+        //i = enemyWaves.Length - 2;
         
         GameObject wave = Instantiate(enemyWaves[i].wave, enemyParent);
 

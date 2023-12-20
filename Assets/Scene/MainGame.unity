@@ -1132,6 +1132,7 @@ MonoBehaviour:
   projectileObject: {fileID: 1413877261856170, guid: 87414b61a66e0274785db7772a51f92f,
     type: 3}
   player: {fileID: 1081777810}
+  enableTime: 0
 --- !u!1 &577047388
 GameObject:
   m_ObjectHideFlags: 0
@@ -2448,7 +2449,7 @@ PrefabInstance:
     - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
         type: 3}
       propertyPath: speedIncrementAmount
-      value: 0.25
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
         type: 3}
@@ -3063,8 +3064,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1a8c9ad8b39824fad2650c8eaaec52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShooting: {fileID: 1081777804}
-  defaultShoot: {fileID: 871639010}
   playerRenderer: {fileID: 1081777808}
   levelController: {fileID: 741024732}
 --- !u!1 &1213074249

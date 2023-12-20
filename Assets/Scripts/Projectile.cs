@@ -18,10 +18,26 @@ public class Projectile : MonoBehaviour {
     public bool destroyedByCollision;
 
     public bool ray;
+
+    private float _time;
+    [SerializeField] private float damageTimeRay;
     
-    
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        _time += Time.deltaTime;
+        if (other.CompareTag("Enemy") && !enemyBullet && ray && _time > damageTimeRay)
+        {
+            print("TOOK DAMAGE");
+            _time = 0f;
+            other.GetComponent<EnemyMain>().GetDamage(damage, other.ClosestPoint(transform.position));
+            if (destroyedByCollision)
+                Destruction();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) //when a projectile collides with another object
     {
+        if (ray) return;
         if (enemyBullet && collision.CompareTag("Player")) //if anoter object is 'player' or 'enemy sending the command of receiving the damage
         {
             Player.instance.GetDamage(damage); 
@@ -30,7 +46,6 @@ public class Projectile : MonoBehaviour {
         }
         else if (!enemyBullet && collision.CompareTag("Enemy"))
         {
-            List<ContactPoint> list = new List<ContactPoint>();
             collision.GetComponent<EnemyMain>().GetDamage(damage, collision.ClosestPoint(transform.position));
             if (destroyedByCollision)
                 Destruction();
