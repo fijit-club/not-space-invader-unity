@@ -7,8 +7,13 @@ public class SpinningBullet : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float speed;
     [SerializeField] private bool enemy;
-    
-    
+
+    private void Start()
+    {
+        if (enemy)
+            speed = WaveData.NormalBossBulletSpeed;
+    }
+
     private void Update()
     {
         if (!enemy)

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// This script defines 'Enemy's' health and behavior. 
@@ -10,12 +8,24 @@ using UnityEngine;
 
 public abstract class EnemyMain : MonoBehaviour
 {
+    public int maxHealth;
     public int health;
     public Transform projectileParent;
     [Tooltip("VFX prefab generating after destruction")]
     public GameObject destructionVFX;
     public GameObject hitEffect;
+    public float projectileSpeed;
+    
+    public Transform healthBar;
 
+    protected void ReduceHealth()
+    {
+        var scale = healthBar.localScale;
+        scale.x -= 1f / maxHealth;
+        if (scale.x > 0f)
+            healthBar.localScale = scale;
+    }
+    
     public abstract void GetDamage(int damage, Vector3 position);
 }
 
@@ -56,7 +66,8 @@ public class Enemy : EnemyMain
             Instantiate(hitEffect,transform.position,Quaternion.identity,transform);
 
         LevelController.Score += 10;
-
+        
+        ReduceHealth();
     }    
 
     //if 'Enemy' collides 'Player', 'Player' gets the damage equal to projectile's damage value

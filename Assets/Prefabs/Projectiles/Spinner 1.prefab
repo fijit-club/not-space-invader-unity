@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 100
-  speed: 10
+  speed: 5
   enemy: 1
 --- !u!1 &4217689763354592281
 GameObject:

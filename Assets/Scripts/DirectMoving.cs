@@ -22,7 +22,20 @@ public class DirectMoving : MonoBehaviour {
     {
         if (!enemy || !followPlayer) return;
         _player = GameObject.FindGameObjectWithTag("Player").transform;
-        Vector3 difference = _player.position - transform.position;
+
+        Vector3 lookAtPos = transform.position;
+
+        if (WaveData.WaveNumber < 10)
+        {
+            float rand = Random.Range(-1f, 1f);
+            if (rand >= 0)
+                rand += 1f;
+            else
+                rand -= 1f;
+            lookAtPos = new Vector3(transform.position.x + rand, transform.position.y + rand, transform.position.z);
+        }
+        
+        Vector3 difference = _player.position - lookAtPos;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.localRotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
     }
@@ -30,10 +43,16 @@ public class DirectMoving : MonoBehaviour {
     //moving the object with the defined speed
     private void Update()
     {
-        if (enemy)
+        if (enemy && followPlayer)
         {
             transform.Translate(transform.InverseTransformDirection(transform.right * speed * Time.deltaTime)); 
             
+            return;
+        }
+
+        if (enemy)
+        {
+            transform.Translate(transform.InverseTransformDirection(-transform.up * speed * Time.deltaTime));
             return;
         }
         transform.Translate(transform.up * speed * Time.deltaTime); 

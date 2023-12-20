@@ -6,8 +6,18 @@ public class ConstantRotation : EnemyMain
 {
     [SerializeField] private float rotationSpeed;
 
+    private Vector3 _initPosition;
+    
+    private void Start()
+    {
+        _initPosition = healthBar.position - transform.position;
+        healthBar.parent = null;
+    }
+
     private void OnDestroy()
     {
+        Destroy(healthBar.gameObject);
+        
         var levelC = FindObjectOfType<LevelController>();
         if (!levelC) return;
         levelC.StartSpawning();
@@ -15,17 +25,20 @@ public class ConstantRotation : EnemyMain
 
     private void Update()
     {
+        healthBar.position = transform.position + _initPosition;
         transform.Rotate(0f, 0f, rotationSpeed * 10f * Time.deltaTime);
     }
 
     public override void GetDamage(int damage, Vector3 position)
     {
-        health -= damage;           //reducing health for damage value, if health is less than 0, starting destruction procedure
+        health -= damage;
         if (health <= 0)
             Destruction();
         else
             Instantiate(hitEffect, position,Quaternion.identity);
         LevelController.Score += 10;
+        
+        ReduceHealth();
     }
 
     private void Destruction()                           

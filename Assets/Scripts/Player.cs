@@ -14,18 +14,8 @@ public class Player : MonoBehaviour
 
     public static Player instance;
     [SerializeField] private LevelController levelController;
-    [SerializeField] private Ability ability;
     
     [SerializeField] private GameOverState gameOverState;
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Bonus"))
-        {
-            ability.TriggerAbility();
-            Destroy(col.gameObject);
-        }
-    }
 
     private void Awake()
     {

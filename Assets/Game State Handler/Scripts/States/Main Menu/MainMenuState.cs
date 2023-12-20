@@ -8,6 +8,10 @@ public class MainMenuState : MonoBehaviour, IState
     {
         foreach (var mainMenuComponent in mainMenuComponents)
             mainMenuComponent.EnteredState();
+
+        WaveData.WaveNumber = 0;
+        WaveData.CircularBossBulletDelay = 0;
+        WaveData.CircularBossBulletSpeed = 0;
     }
 
     public void StateUpdate()

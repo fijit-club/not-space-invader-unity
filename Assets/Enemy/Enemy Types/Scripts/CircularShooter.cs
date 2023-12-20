@@ -7,11 +7,15 @@ public class CircularShooter : MonoBehaviour
     
     private void Start()
     {
+        delay = WaveData.CircularBossBulletDelay;
         InvokeRepeating(nameof(Spawn), .6f, delay);
     }
 
     private void Spawn()
     {
+        print(delay);
         var projInst = Instantiate(projectile, transform.position, transform.rotation);
+
+        projInst.GetComponent<DirectMoving>().speed = WaveData.CircularBossBulletSpeed;
     }
 }

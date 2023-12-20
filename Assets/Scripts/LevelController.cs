@@ -46,6 +46,31 @@ public class LevelController : MonoBehaviour
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float speedIncrementAmount;
     [SerializeField] private float maxBulletSpeed;
+    [Space(10)]
+    
+    [Header("Circular Boss - Bullet Speed")]
+    [SerializeField] private float initialCircularBossBulletSpeed;
+    [SerializeField] private float circularBossBulletSpeedIncrement;
+    [SerializeField] private float circularBossBulletMaxSpeed;
+    [Space(10)]
+    
+    [Header("Circular Boss - Bullet Spawn Delay")]
+    [SerializeField] private float circularBossBulletDelayInit;
+    [SerializeField] private float circularBossBulletDelayDecrement;
+    [SerializeField] private float circularBossBulletDelayMin;
+    [Space(10)]
+    
+    [Header("Normal Boss - Bullet Speed")]
+    [SerializeField] private float initBossBulletSpeed;
+    [SerializeField] private float incrementBossBulletSpeed;
+    [SerializeField] private float maxBossBulletSpeed;
+    [Space(10)]
+    
+    [Header("Normal Boss - Bullet Spawn Delay")]
+    [SerializeField] private float initBossBulletDelay;
+    [SerializeField] private float decrementBossBulletDelay;
+    [SerializeField] private float minBossBulletDelay;
+    
 
     public void StopInvoke()
     {
@@ -86,6 +111,10 @@ public class LevelController : MonoBehaviour
         //     StartCoroutine(CreateEnemyWave(enemyWaves[i].timeToStart, enemyWaves[i].wave));
         // }
         
+        WaveData.CircularBossBulletSpeed = initialCircularBossBulletSpeed;
+        WaveData.CircularBossBulletDelay = circularBossBulletDelayInit;
+        WaveData.NormalBossBulletSpeed = initBossBulletSpeed;
+        WaveData.NormalBossBulletDelay = initBossBulletDelay;
         StartSpawning();
         
         StartCoroutine(PlanetsCreation());
@@ -99,13 +128,21 @@ public class LevelController : MonoBehaviour
     
     private void SpawnWave()
     {
-        int i = Random.Range(0, enemyWaves.Length);
+        int i = 0;
+        if (WaveData.WaveNumber > 5)
+        {
+            i = Random.Range(0, enemyWaves.Length);
+        
+            if (bulletSpeed < maxBulletSpeed)
+                bulletSpeed += speedIncrementAmount;
+        }
+        else
+            i = Random.Range(0, enemyWaves.Length - 3);
         
         GameObject wave = Instantiate(enemyWaves[i].wave, enemyParent);
-        
-        if (bulletSpeed < maxBulletSpeed)
-            bulletSpeed += speedIncrementAmount;
 
+        WaveData.WaveNumber++;
+        
         if (i == enemyWaves.Length - 1 || i == enemyWaves.Length - 2 || i == enemyWaves.Length - 3)
         {
             wavingIndex = 0;
@@ -114,8 +151,25 @@ public class LevelController : MonoBehaviour
             
             if (enemyMain)
                 enemyMain.projectileParent = enemyParent;
+
+            if (i == enemyWaves.Length - 2)
+            {
+                if (WaveData.CircularBossBulletSpeed < circularBossBulletMaxSpeed)
+                    WaveData.CircularBossBulletSpeed += circularBossBulletSpeedIncrement;
+                if (WaveData.CircularBossBulletDelay > circularBossBulletDelayMin)
+                    WaveData.CircularBossBulletDelay -= circularBossBulletDelayDecrement;
+            }
+
+            if (i == enemyWaves.Length - 3 || i == enemyWaves.Length - 1)
+            {
+                if (WaveData.NormalBossBulletSpeed < maxBossBulletSpeed)
+                    WaveData.NormalBossBulletSpeed += incrementBossBulletSpeed;
+                if (WaveData.NormalBossBulletDelay > minBossBulletDelay)
+                    WaveData.NormalBossBulletDelay -= decrementBossBulletDelay;
+            }
             
             CancelInvoke(nameof(SpawnWave));
+            
             return;
         }
         

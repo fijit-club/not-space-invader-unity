@@ -322,7 +322,6 @@ MonoBehaviour:
   - {fileID: 123467555}
   - {fileID: 123467556}
   - {fileID: 123467557}
-  abilitySpawner: {fileID: 1779570375}
 --- !u!114 &123467555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,7 +400,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &258296485
 MonoBehaviour:
@@ -482,11 +481,31 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114660646102788534, guid: 8e33fda0c220936498f5288af83d7450,
+        type: 3}
+      propertyPath: borders.maxXOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660646102788534, guid: 8e33fda0c220936498f5288af83d7450,
+        type: 3}
+      propertyPath: borders.maxYOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660646102788534, guid: 8e33fda0c220936498f5288af83d7450,
+        type: 3}
+      propertyPath: borders.minXOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114660646102788534, guid: 8e33fda0c220936498f5288af83d7450,
+        type: 3}
+      propertyPath: borders.minYOffset
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114960433178452790, guid: 8e33fda0c220936498f5288af83d7450,
         type: 3}
       propertyPath: ability
       value: 
-      objectReference: {fileID: 1779570376}
+      objectReference: {fileID: 0}
     - target: {fileID: 114960433178452790, guid: 8e33fda0c220936498f5288af83d7450,
         type: 3}
       propertyPath: gameOverState
@@ -974,7 +993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &528816596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2408,13 +2427,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
         type: 3}
+      propertyPath: maxBossBulletSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
+        type: 3}
+      propertyPath: minBossBulletDelay
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
+        type: 3}
+      propertyPath: initBossBulletDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
+        type: 3}
+      propertyPath: initBossBulletSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
+        type: 3}
       propertyPath: speedIncrementAmount
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
         type: 3}
       propertyPath: enemyWaves.Array.size
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
+        type: 3}
+      propertyPath: decrementBossBulletDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
+        type: 3}
+      propertyPath: incrementBossBulletSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
+        type: 3}
+      propertyPath: circularBossBulletDelayMin
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
+        type: 3}
+      propertyPath: circularBossBulletMaxSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
+        type: 3}
+      propertyPath: circularBossBulletDelayInit
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
         type: 3}
@@ -2468,7 +2532,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemyWaves.Array.data[8].wave
       value: 
-      objectReference: {fileID: 1557008729924385536, guid: bc308eca1acb29b4a98c090cf49e594c,
+      objectReference: {fileID: 1373690366928948, guid: ae37749f2ca1e54438d78406d627c1f2,
         type: 3}
     - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
         type: 3}
@@ -2518,6 +2582,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1643244333601292, guid: d5985777a604bf240a36957329db29c1,
         type: 3}
+    - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
+        type: 3}
+      propertyPath: initialCircularBossBulletSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
+        type: 3}
+      propertyPath: circularBossBulletDelayDecrement
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
+        type: 3}
+      propertyPath: circularBossBulletSpeedIncrement
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
         type: 3}
       propertyPath: enemyWaves.Array.data[0].timeToStart
@@ -13553,74 +13632,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700248660}
   m_CullTransparentMesh: 1
---- !u!1 &1779570373
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1779570374}
-  - component: {fileID: 1779570375}
-  - component: {fileID: 1779570376}
-  m_Layer: 0
-  m_Name: Upgrade Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1779570374
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1779570373}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 11.03, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1779570375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1779570373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98545c58d32c29342b546c4d0d47c6dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  abilitySpawnTime: 10
-  abilityPoint: {fileID: 1180221311273546, guid: 71f89368f03bd5740a7f17e106b277bb,
-    type: 3}
-  xMin: -2.6
-  xMax: 2.6
-  transformParent: {fileID: 764898943}
---- !u!114 &1779570376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1779570373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce2af8fe365361447b893ef8beab31c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectShip: {fileID: 1977018460}
-  playerShooting: {fileID: 1081777804}
-  defaultShoot: {fileID: 871639010}
-  abilityTime: 5
-  rayShooter: {fileID: 559133504}
 --- !u!1 &1910721665
 GameObject:
   m_ObjectHideFlags: 0
@@ -13759,13 +13770,14 @@ MonoBehaviour:
   spaceShipImage: {fileID: 1081777808}
   spaceShipVisual: {fileID: 356177744}
   playImage: {fileID: 1056973311}
-  abilitySpawner: {fileID: 1779570373}
+  abilitySpawner: {fileID: 0}
   shipText: {fileID: 1990977095}
   buyArea: {fileID: 477843303}
   buyText: {fileID: 828971043}
   visual: {fileID: 1989775213}
   coinsText: {fileID: 1411431820}
   shipCostCoinsText: {fileID: 949495458}
+  playerShooting: {fileID: 1081777804}
 --- !u!1 &1989775211
 GameObject:
   m_ObjectHideFlags: 0
