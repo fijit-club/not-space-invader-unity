@@ -19,8 +19,10 @@ public class PlayerMoving : MonoBehaviour {
     [Tooltip("offset from viewport borders for player's movement")]
     public Borders borders;
     Camera mainCamera;
-    bool controlIsActive = false; 
-
+    bool controlIsActive = false;
+    
+    [SerializeField] private float yOffset = 2.2f;
+    
     public static PlayerMoving instance; //unique instance of the script for easy access to the script
     
     public void TapAreaPressed()
@@ -63,7 +65,7 @@ public class PlayerMoving : MonoBehaviour {
        Vector3 mousePosition =
            mainCamera.ScreenToWorldPoint(Input.mousePosition); //calculating mouse position in the worldspace
        mousePosition.z = transform.position.z;
-       transform.position = Vector3.MoveTowards(transform.position, mousePosition, 30 * Time.deltaTime);
+       transform.position = Vector3.MoveTowards(transform.position, mousePosition + (Vector3.up * yOffset), 30 * Time.deltaTime);
    }
 #if UNITY_IOS || UNITY_ANDROID //if current platform is mobile, 
 
