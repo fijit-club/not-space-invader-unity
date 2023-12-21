@@ -5811,9 +5811,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Swarm
-
-'
+  m_text: Blaster
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b5acec799d282974da4dfb8d61af7971, type: 2}
   m_sharedMaterial: {fileID: 6371417103590453418, guid: b5acec799d282974da4dfb8d61af7971,
@@ -23577,7 +23575,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Celestial
+  m_text: Space
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b5acec799d282974da4dfb8d61af7971, type: 2}
   m_sharedMaterial: {fileID: 6371417103590453418, guid: b5acec799d282974da4dfb8d61af7971,
