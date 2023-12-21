@@ -21,12 +21,6 @@ public class Enemy : EnemyMain
             maxHealth = 3;
             health = 3;
         }
-
-        if (WaveData.WaveNumber > 15)
-        {
-            maxHealth = 5;
-            health = 5;
-        }
         Invoke("ActivateShooting", shotTimeMin);
     }
 

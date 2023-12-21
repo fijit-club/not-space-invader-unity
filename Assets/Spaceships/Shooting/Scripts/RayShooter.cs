@@ -15,16 +15,6 @@ public class RayShooter : ShootingType
         if (_shot) return;
         _shot = true;
         _ray = Instantiate(projectileObject, player.position, Quaternion.Euler(Vector3.zero), player);
-        InvokeRepeating(nameof(SetVisibility), 2f, 2f);
-    }
-
-    private void SetVisibility()
-    {
-        print("test");
-        if (_ray)
-            _ray.SetActive(!_ray.activeInHierarchy);
-        else
-            CancelInvoke(nameof(SetVisibility));
     }
 
     public void DestroyRay()
