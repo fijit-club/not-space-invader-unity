@@ -1,24 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-/// <summary>
-/// This script defines 'Enemy's' health and behavior. 
-/// </summary>
-public class Enemy : MonoBehaviour
+public class Enemy : EnemyMain
 {
-    public Transform projectileParent;
     
     #region FIELDS
-    [Tooltip("Health points in integer")]
-    public int health;
 
     [Tooltip("Enemy's projectile prefab")]
     public GameObject Projectile;
-
-    [Tooltip("VFX prefab generating after destruction")]
-    public GameObject destructionVFX;
-    public GameObject hitEffect;
     
     [HideInInspector] public int shotChance; //probability of 'Enemy's' shooting during tha path
     [HideInInspector] public float shotTimeMin, shotTimeMax; //max and min time for shooting from the beginning of the path
@@ -28,24 +16,40 @@ public class Enemy : MonoBehaviour
     
     private void Start()
     {
+        if (WaveData.WaveNumber > 10)
+        {
+            maxHealth = 3;
+            health = 3;
+        }
+
+        if (WaveData.WaveNumber > 15)
+        {
+            maxHealth = 5;
+            health = 5;
+        }
         Invoke("ActivateShooting", shotTimeMin);
     }
 
     //coroutine making a shot
     void ActivateShooting()
     {
+        if (Random.Range(0, 3) == 1) return;
         var proj = Instantiate(Projectile, transform.position, Quaternion.identity, projectileParent);
         proj.GetComponent<DirectMoving>().speed = speed;
     }
 
     //method of getting damage for the 'Enemy'
-    public void GetDamage(int damage) 
+    public override void GetDamage(int damage, Vector3 position) 
     {
         health -= damage;           //reducing health for damage value, if health is less than 0, starting destruction procedure
         if (health <= 0)
             Destruction();
         else
             Instantiate(hitEffect,transform.position,Quaternion.identity,transform);
+
+        LevelController.Score += 10;
+        
+        ReduceHealth();
     }    
 
     //if 'Enemy' collides 'Player', 'Player' gets the damage equal to projectile's damage value

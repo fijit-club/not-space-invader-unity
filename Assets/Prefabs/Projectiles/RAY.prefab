@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4959995430721884}
   m_Layer: 0
   m_Name: RAY
-  m_TagString: Projectile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 7978335094015262405}
   m_Layer: 0
   m_Name: RAY sprite
-  m_TagString: Projectile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,10 +157,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 002f4bcf8b0ec074f8485b31c91504b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 1
   enemyBullet: 0
-  destroyedByCollision: 1
+  destroyedByCollision: 0
   ray: 1
+  damageTimeRay: 0.5
 --- !u!50 &7978335094015262405
 Rigidbody2D:
   serializedVersion: 4

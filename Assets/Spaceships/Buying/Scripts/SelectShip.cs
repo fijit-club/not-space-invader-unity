@@ -12,13 +12,14 @@ public class SelectShip : MonoBehaviour
     [SerializeField] private SpriteRenderer spaceShipImage;
     [SerializeField] private SpriteRenderer spaceShipVisual;
     [SerializeField] private GameObject playImage;
-    [SerializeField] private GameObject abilityButton;
+    [SerializeField] private GameObject abilitySpawner;
     [SerializeField] private TMP_Text shipText;
     [SerializeField] private GameObject buyArea;
     [SerializeField] private TMP_Text buyText;
     [SerializeField] private Animator visual;
     [SerializeField] private TMP_Text coinsText;
     [SerializeField] private TMP_Text shipCostCoinsText;
+    [SerializeField] private PlayerShooting playerShooting;
     
     private int _currentIndex;
 
@@ -85,17 +86,13 @@ public class SelectShip : MonoBehaviour
         List<NotSpaceInvaders.Spaceship> spaceshipsData = Bridge.GetInstance().thisPlayerInfo.data.spaceships;
 
         shipText.text = currentSpaceship.name;
-        
-        if (_currentIndex > 0)
-            abilityButton.SetActive(true);
-        else
-            abilityButton.SetActive(false);
 
         if (spaceships[_currentIndex].purchased)
         {
             playImage.SetActive(true);
             buyArea.SetActive(false);
             buyText.gameObject.SetActive(false);
+            playerShooting.shooting = currentSpaceship.shootingType;
         }
         else
         {

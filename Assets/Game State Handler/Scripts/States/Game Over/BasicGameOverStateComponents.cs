@@ -11,7 +11,6 @@ public class BasicGameOverStateComponents : InGameComponents
     [SerializeField] private LevelController levelController;
     [SerializeField] private RayShooter rayShooter;
     
-    
     public override void EnteredState()
     {
         levelController.StopInvoke();
