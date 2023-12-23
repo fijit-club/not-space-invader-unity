@@ -83,7 +83,7 @@ public class SelectShip : MonoBehaviour
         
         spaceShipImage.sprite = currentSpaceship.sprite;
 
-        List<NotSpaceInvaders.Spaceship> spaceshipsData = Bridge.GetInstance().thisPlayerInfo.data.spaceships;
+        List<NotSpaceInvaders.Asset> spaceshipsData = Bridge.GetInstance().thisPlayerInfo.data.assets;
 
         shipText.text = currentSpaceship.name;
 
