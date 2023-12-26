@@ -4,6 +4,8 @@ public abstract class ShootingType : MonoBehaviour
 {
     public Guns guns;
     public GameObject projectileObject;
+    
+    [SerializeField] protected AudioSource shoot;
 
     private void OnEnable()
     {

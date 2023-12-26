@@ -8,5 +8,6 @@ public class DualSpinShooter : ShootingType
     {
         CreateLaserShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
         guns.centralGunVFX.Play();
+        shoot.Play();
     }
 }

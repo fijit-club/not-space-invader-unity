@@ -34,7 +34,7 @@ public class PlayerShooting : MonoBehaviour {
     bool shootingIsActive = true; 
     [HideInInspector] public int maxweaponPower = 4; 
     public static PlayerShooting instance;
-
+    
     private void Awake()
     {
         if (instance == null)
@@ -92,7 +92,6 @@ public class PlayerShooting : MonoBehaviour {
         //         CreateLazerShot(projectileObject, guns.rightGun.transform.position, new Vector3(0, 0, -15));
         //         break;
         // }
-        
         shooting.Shoot();
     }
 

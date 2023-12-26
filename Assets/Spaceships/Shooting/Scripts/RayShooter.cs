@@ -15,6 +15,7 @@ public class RayShooter : ShootingType
         if (_shot) return;
         _shot = true;
         _ray = Instantiate(projectileObject, player.position, Quaternion.Euler(Vector3.zero), player);
+        shoot.Play();
     }
 
     public void DestroyRay()

@@ -16,7 +16,8 @@ public class Player : MonoBehaviour
     [SerializeField] private LevelController levelController;
     
     [SerializeField] private GameOverState gameOverState;
-
+    [SerializeField] private AudioSource explosion;
+    
     private void Awake()
     {
         if (instance == null) 
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
     {
         Instantiate(destructionFX, transform.position, Quaternion.identity); //generating destruction visual effect and destroying the 'Player' object
         //Destroy(gameObject);
+        explosion.Play();
         Bridge.GetInstance().coinsCollected = levelController.coins;
         Bridge.GetInstance().SendScore(levelController.score);
         GameStateManager.ChangeState(gameOverState);
