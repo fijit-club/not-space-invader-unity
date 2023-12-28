@@ -63,10 +63,12 @@ public class SelectShip : MonoBehaviour
 
     public void CheckShips()
     {
-        for (int i = 1; i < spaceships.Length; i++)
+        List<NotSpaceInvaders.Spaceship> dataInBridge = Bridge.GetInstance().thisPlayerInfo.data.spaceships;
+        for (int i = 1; i < dataInBridge.Count; i++)
         {
-            if (spaceships[i].id == spaceships[_currentIndex].id)
-                spaceships[_currentIndex].purchased = true;
+            string id = dataInBridge[i].id;
+            if (spaceships[i].id == id)
+                spaceships[i].purchased = true;
         }
 
         coinsText.text = Bridge.GetInstance().thisPlayerInfo.coins.ToString();
