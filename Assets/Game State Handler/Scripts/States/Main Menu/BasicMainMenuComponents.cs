@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 [RequireComponent(typeof(MainMenuState))]
 public class BasicMainMenuComponents : InGameComponents
@@ -10,12 +11,15 @@ public class BasicMainMenuComponents : InGameComponents
     [SerializeField] private GameObject[] gameObjectsToDisable;
     [SerializeField] private MonoBehaviour[] componentsToDisable;
     [SerializeField] private SelectShip selectShip;
+    [SerializeField] private TMP_Text versionText;
     
     private bool _gameStarted;
     private Vector3 _playerInitLocation;
     
     public override void EnteredState()
     {
+        versionText.text = "Ver." + Application.version;
+        
         Time.timeScale = 1f;
         if (!_gameStarted)
         {
