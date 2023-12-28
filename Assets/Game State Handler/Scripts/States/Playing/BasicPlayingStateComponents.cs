@@ -1,3 +1,5 @@
+using NotSpaceInvaders;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayingState))]
@@ -9,9 +11,12 @@ public class BasicPlayingStateComponents : InGameComponents
     [SerializeField] private MonoBehaviour[] componentsToEnable;
     [SerializeField] private GameObject[] gameObjectsToDisable;
     [SerializeField] private MonoBehaviour[] componentsToDisable;
+    [SerializeField] private TMP_Text highScoreText;
+    
     
     public override void EnteredState()
     {
+        highScoreText.text = "High Score: " + Bridge.GetInstance().thisPlayerInfo.highScore;
         inGameUI.SetActive(true);
         foreach (var go in gameObjectsToEnable)
             go.SetActive(true);

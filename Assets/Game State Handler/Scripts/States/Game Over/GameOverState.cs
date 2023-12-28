@@ -6,6 +6,7 @@ public class GameOverState : MonoBehaviour, IState
 
     public void OnEnter()
     {
+        Time.timeScale = 1f;
         foreach (var gameOverStateComponent in gameOverStateComponents)
             gameOverStateComponent.EnteredState();
     }

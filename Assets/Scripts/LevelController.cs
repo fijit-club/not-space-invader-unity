@@ -95,7 +95,7 @@ public class LevelController : MonoBehaviour
     {
         score = Score;
         coins = Coins;
-        coinText.text = "Coins: " + Coins;
+        coinText.text =  Coins.ToString();
         scoreText.text = "Score: " + score;
     }
     

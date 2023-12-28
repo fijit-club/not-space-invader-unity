@@ -16,6 +16,7 @@ public class BasicMainMenuComponents : InGameComponents
     
     public override void EnteredState()
     {
+        Time.timeScale = 1f;
         if (!_gameStarted)
         {
             _gameStarted = true;
