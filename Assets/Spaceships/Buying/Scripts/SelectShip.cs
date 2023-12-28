@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NotSpaceInvaders;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectShip : MonoBehaviour
 {
@@ -14,7 +15,12 @@ public class SelectShip : MonoBehaviour
     [SerializeField] private GameObject playImage;
     [SerializeField] private GameObject abilitySpawner;
     [SerializeField] private TMP_Text shipText;
+    [SerializeField] private TMP_Text costText;
     [SerializeField] private GameObject buyArea;
+    [SerializeField] private Color32 normalColor;
+    [SerializeField] private Color32 disabledColor;
+    
+    [SerializeField] private Button buyButton;
     [SerializeField] private TMP_Text buyText;
     [SerializeField] private Animator visual;
     [SerializeField] private TMP_Text coinsText;
@@ -97,6 +103,7 @@ public class SelectShip : MonoBehaviour
         {
             playImage.SetActive(true);
             buyArea.SetActive(false);
+            buyButton.gameObject.SetActive(false);
             buyText.gameObject.SetActive(false);
             playerShooting.shooting = currentSpaceship.shootingType;
         }
@@ -105,16 +112,21 @@ public class SelectShip : MonoBehaviour
             playImage.SetActive(false);
 
             buyText.gameObject.SetActive(true);
+            buyButton.gameObject.SetActive(true);
             
             if (Bridge.GetInstance().thisPlayerInfo.coins >= currentSpaceship.coinsRequired)
             {
-                buyText.text = "Tap to Purchase";
+                buyText.text = "Buy?";
                 buyArea.SetActive(true);
+                buyButton.interactable = true;
+                costText.color = normalColor;
             }
             else
             {
                 buyText.text = "Not enough coins";
                 buyArea.SetActive(false);
+                buyButton.interactable = false;
+                costText.color = disabledColor;
             }
             shipCostCoinsText.text = currentSpaceship.coinsRequired.ToString();
 
