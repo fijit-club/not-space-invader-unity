@@ -25629,25 +25629,25 @@ MonoBehaviour:
   - name: Dual Shooter
     id: space-dual-shooter-ship
     sprite: {fileID: 21300000, guid: ddefe025da6575441bbf37f523fbef69, type: 3}
-    coinsRequired: 500
+    coinsRequired: 1000
     purchased: 0
     shootingType: {fileID: 1439640051}
   - name: Triple Shooter
     id: space-triple-shooter-ship
     sprite: {fileID: 21300000, guid: 17ef47a54a65c1c4698e242ce35cb756, type: 3}
-    coinsRequired: 1000
+    coinsRequired: 2500
     purchased: 0
     shootingType: {fileID: 1473076731}
   - name: Spin Shooter
     id: space-spin-shooter-ship
     sprite: {fileID: 21300000, guid: 1aca30ca1ab88c24da2fba7b1ffb14e6, type: 3}
-    coinsRequired: 2000
+    coinsRequired: 7500
     purchased: 0
     shootingType: {fileID: 914361905}
   - name: Ray Shooter
     id: space-ray-shooter-ship
     sprite: {fileID: 21300000, guid: 1d4f1445d6edb2149a6d9629e5ef862f, type: 3}
-    coinsRequired: 7500
+    coinsRequired: 10000
     purchased: 0
     shootingType: {fileID: 559133504}
   currentSpaceship:
