@@ -16,7 +16,7 @@ public class BasicPlayingStateComponents : InGameComponents
     
     public override void EnteredState()
     {
-        highScoreText.text = "High Score: " + Bridge.GetInstance().thisPlayerInfo.highScore;
+        highScoreText.text = Bridge.GetInstance().thisPlayerInfo.highScore.ToString();
         inGameUI.SetActive(true);
         foreach (var go in gameObjectsToEnable)
             go.SetActive(true);

@@ -83,7 +83,7 @@ public class LevelController : MonoBehaviour
         score = 0;
         Coins = 0;
         Score = 0;
-        scoreText.text = "Score: " + score;
+        scoreText.text = score.ToString();
     }
     
     private void OnDisable()
@@ -96,7 +96,7 @@ public class LevelController : MonoBehaviour
         score = Score;
         coins = Coins;
         coinText.text =  Coins.ToString();
-        scoreText.text = "Score: " + score;
+        scoreText.text = score.ToString();
     }
     
     public void StartWaves()
