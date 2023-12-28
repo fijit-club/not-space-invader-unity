@@ -25,12 +25,12 @@ namespace NotSpaceInvaders
     }
     
     [System.Serializable]
-    public class Spaceship
+    public class Asset
     {
         public string id;
         public Attributes[] attributes;
 
-        public Spaceship(string spaceshipId)
+        public Asset(string spaceshipId)
         {
             id = spaceshipId;
 
@@ -40,7 +40,8 @@ namespace NotSpaceInvaders
     [System.Serializable]
     public class Data
     {
-        public List<Spaceship> spaceships;
+        public List<Asset> assets;
+        public string saveData;
     }
 
     [System.Serializable]
@@ -278,14 +279,14 @@ namespace NotSpaceInvaders
 
         public void AddSpaceship(string spaceshipID)
         {
-            Spaceship addedSpaceship = new Spaceship(spaceshipID);
-            addedSpaceship.id = spaceshipID;
+            Asset addedAsset = new Asset(spaceshipID);
+            addedAsset.id = spaceshipID;
         
         
         
-            Debug.Log("added new spaceship " + addedSpaceship.id);
+            Debug.Log("added new spaceship " + addedAsset.id);
         
-            thisPlayerInfo.data.spaceships.Add(addedSpaceship);
+            thisPlayerInfo.data.assets.Add(addedAsset);
         }
 
         [ContextMenu("Do Something")]
@@ -297,7 +298,9 @@ namespace NotSpaceInvaders
             //SendInitialData("{\"coins\": 3000,\"data\": null}");
             //Debug.Log(JsonUtility.ToJson( thisPlayerInfo.data));
             //Debug.Log( thisPlayerInfo.data);
-            SendInitialData("{\"coins\":384696,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":949,\"data\":{\"spaceships\":[{\"id\":\"space-dual-shooter-ship\",\"attributes\":[]},{\"id\":\"space-triple-shooter-ship\",\"attributes\":[]}]}}");
+            SendInitialData("{\"coins\":384696,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":949,\"data\":{\"assets\":[{\"id\":\"space-dual-shooter-ship\",\"attributes\":[]},{\"id\":\"space-triple-shooter-ship\",\"attributes\":[]}], \"saveData\":" +
+                            "\"TEST\"" +
+                            "}}");
         }
         [ContextMenu("Do Something2")]
         public void SendTextData2()

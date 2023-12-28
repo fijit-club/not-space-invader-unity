@@ -63,7 +63,7 @@ public class SelectShip : MonoBehaviour
     [ContextMenu("Do Something")]
     public void CheckShips()
     {
-        List<NotSpaceInvaders.Spaceship> dataInBridge = Bridge.GetInstance().thisPlayerInfo.data.spaceships;
+        List<NotSpaceInvaders.Asset> dataInBridge = Bridge.GetInstance().thisPlayerInfo.data.assets;
         
         for (int i = 0; i < spaceships.Length; i++)
         {
@@ -89,7 +89,7 @@ public class SelectShip : MonoBehaviour
         
         spaceShipImage.sprite = currentSpaceship.sprite;
 
-        List<NotSpaceInvaders.Spaceship> spaceshipsData = Bridge.GetInstance().thisPlayerInfo.data.spaceships;
+        List<NotSpaceInvaders.Asset> spaceshipsData = Bridge.GetInstance().thisPlayerInfo.data.assets;
 
         shipText.text = currentSpaceship.name;
 
