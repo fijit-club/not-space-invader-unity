@@ -297,7 +297,7 @@ namespace NotSpaceInvaders
             //SendInitialData("{\"coins\": 3000,\"data\": null}");
             //Debug.Log(JsonUtility.ToJson( thisPlayerInfo.data));
             //Debug.Log( thisPlayerInfo.data);
-            SendInitialData("{\"coins\":384696,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":949,\"data\":{\"spaceships\":[{\"id\":\"space-dual-shooter-ship\",\"attributes\":[]},{\"id\":\"test-spaceship-2\",\"attributes\":[]}]}}");
+            SendInitialData("{\"coins\":384696,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":949,\"data\":{\"spaceships\":[{\"id\":\"space-dual-shooter-ship\",\"attributes\":[]},{\"id\":\"space-triple-shooter-ship\",\"attributes\":[]}]}}");
         }
         [ContextMenu("Do Something2")]
         public void SendTextData2()

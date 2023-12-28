@@ -57,18 +57,22 @@ public class SelectShip : MonoBehaviour
 
         currentSpaceship.purchased = true;
         coinsText.text = Bridge.GetInstance().thisPlayerInfo.coins.ToString();
-        
         UpdateProperties();
     }
-
+    
+    [ContextMenu("Do Something")]
     public void CheckShips()
     {
         List<NotSpaceInvaders.Spaceship> dataInBridge = Bridge.GetInstance().thisPlayerInfo.data.spaceships;
-        for (int i = 1; i < dataInBridge.Count; i++)
+        
+        for (int i = 0; i < spaceships.Length; i++)
         {
-            string id = dataInBridge[i].id;
-            if (spaceships[i].id == id)
-                spaceships[i].purchased = true;
+            for (int j = 0; j < dataInBridge.Count; j++)
+            {
+                string id = dataInBridge[j].id;
+                if (spaceships[i].id == id)
+                    spaceships[i].purchased = true;
+            }
         }
 
         coinsText.text = Bridge.GetInstance().thisPlayerInfo.coins.ToString();
