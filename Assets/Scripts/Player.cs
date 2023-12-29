@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
         Instantiate(destructionFX, transform.position, Quaternion.identity); //generating destruction visual effect and destroying the 'Player' object
         //Destroy(gameObject);
         explosion.Play();
-        Bridge.GetInstance().coinsCollected = levelController.coins;
+        Bridge.GetInstance().UpdateCoins(levelController.coins);
         Bridge.GetInstance().SendScore(levelController.score);
         GameStateManager.ChangeState(gameOverState);
     }
