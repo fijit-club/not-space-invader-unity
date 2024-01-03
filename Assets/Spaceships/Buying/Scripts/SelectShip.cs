@@ -9,7 +9,8 @@ public class SelectShip : MonoBehaviour
 {
     public Spaceship[] spaceships;
     public Spaceship currentSpaceship;
-    
+    public int currentIndex;
+
     [SerializeField] private SpriteRenderer spaceShipImage;
     [SerializeField] private SpriteRenderer spaceShipVisual;
     [SerializeField] private GameObject playImage;
@@ -19,27 +20,27 @@ public class SelectShip : MonoBehaviour
     [SerializeField] private GameObject buyArea;
     [SerializeField] private Color32 normalColor;
     [SerializeField] private Color32 disabledColor;
-    
+
     [SerializeField] private Button buyButton;
     [SerializeField] private TMP_Text buyText;
     [SerializeField] private Animator visual;
     [SerializeField] private TMP_Text coinsText;
     [SerializeField] private TMP_Text shipCostCoinsText;
     [SerializeField] private PlayerShooting playerShooting;
-    
-    private int _currentIndex;
 
+    private bool _changedSpriteInStart;
+    
     public int GetIndex()
     {
-        return _currentIndex;
+        return currentIndex;
     }
-    
+
     public void GoRight()
     {
-        if (_currentIndex < spaceships.Length - 1)
-            _currentIndex++;
+        if (currentIndex < spaceships.Length - 1)
+            currentIndex++;
         else
-            _currentIndex = 0;
+            currentIndex = 0;
         
         visual.Play("MoveRight", -1, 0f);
         
@@ -48,10 +49,10 @@ public class SelectShip : MonoBehaviour
 
     public void GoLeft()
     {
-        if (_currentIndex > 0)
-            _currentIndex--;
+        if (currentIndex > 0)
+            currentIndex--;
         else
-            _currentIndex = spaceships.Length - 1;
+            currentIndex = spaceships.Length - 1;
         
         visual.Play("MoveLeft", -1, 0f);
         UpdateProperties();
@@ -91,7 +92,7 @@ public class SelectShip : MonoBehaviour
     
     public void UpdateProperties()
     {
-        currentSpaceship = spaceships[_currentIndex];
+        currentSpaceship = spaceships[currentIndex];
         
         spaceShipImage.sprite = currentSpaceship.sprite;
 
@@ -99,7 +100,7 @@ public class SelectShip : MonoBehaviour
 
         shipText.text = currentSpaceship.name;
 
-        if (spaceships[_currentIndex].purchased)
+        if (spaceships[currentIndex].purchased)
         {
             playImage.SetActive(true);
             buyArea.SetActive(false);
@@ -130,6 +131,12 @@ public class SelectShip : MonoBehaviour
             }
             shipCostCoinsText.text = currentSpaceship.coinsRequired.ToString();
 
+        }
+
+        if (!_changedSpriteInStart)
+        {
+            _changedSpriteInStart = true;
+            ChangeSprite();
         }
     }
 }

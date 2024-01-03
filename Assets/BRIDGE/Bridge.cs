@@ -77,6 +77,7 @@ namespace NotSpaceInvaders
         private static Bridge instance;
         public int coinsCollected = 0;
         [SerializeField] private SelectShip selectShip;
+        [SerializeField] private GameOverMenu gameOverMenu;
         
         
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -203,6 +204,7 @@ namespace NotSpaceInvaders
         public void Replay()
         {
             coinsCollected = 0; // REPLAY GOES HERE
+            gameOverMenu.Replay();
         }
 
         public void SendInitialData(string json)

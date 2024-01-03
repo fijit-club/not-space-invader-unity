@@ -92,6 +92,8 @@ public class PlayerShooting : MonoBehaviour {
         //         CreateLazerShot(projectileObject, guns.rightGun.transform.position, new Vector3(0, 0, -15));
         //         break;
         // }
+        
+        if (!Input.GetMouseButton(0)) return;
         shooting.Shoot();
     }
 

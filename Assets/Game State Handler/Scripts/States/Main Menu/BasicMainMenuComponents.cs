@@ -27,6 +27,7 @@ public class BasicMainMenuComponents : InGameComponents
             _playerInitLocation = player.transform.position;
         }
         
+        selectShip.currentIndex = PlayerPrefs.GetInt("SELECTED_SHIP");
         selectShip.UpdateProperties();
         
         player.SetActive(true);

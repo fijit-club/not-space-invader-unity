@@ -5557,6 +5557,7 @@ MonoBehaviour:
       saveData: 
   coinsCollected: 0
   selectShip: {fileID: 1977018460}
+  gameOverMenu: {fileID: 0}
 --- !u!1001 &271878659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8784,6 +8785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playingState: {fileID: 123467554}
+  selectShip: {fileID: 1977018460}
 --- !u!82 &1044898889
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25761,6 +25763,7 @@ MonoBehaviour:
     coinsRequired: 0
     purchased: 0
     shootingType: {fileID: 0}
+  currentIndex: 0
   spaceShipImage: {fileID: 1081777808}
   spaceShipVisual: {fileID: 356177744}
   playImage: {fileID: 1056973311}
