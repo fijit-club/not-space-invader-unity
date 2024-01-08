@@ -5557,7 +5557,7 @@ MonoBehaviour:
       saveData: 
   coinsCollected: 0
   selectShip: {fileID: 1977018460}
-  gameOverMenu: {fileID: 0}
+  gameOverMenu: {fileID: 1502566858}
 --- !u!1001 &271878659
 PrefabInstance:
   m_ObjectHideFlags: 0
