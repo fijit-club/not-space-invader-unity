@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using NotSpaceInvaders;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(MainMenuState))]
@@ -26,8 +27,10 @@ public class BasicMainMenuComponents : InGameComponents
             _gameStarted = true;
             _playerInitLocation = player.transform.position;
         }
+
+        selectShip.currentIndex = Bridge.GetInstance().saveData.value[0];
         
-        selectShip.currentIndex = PlayerPrefs.GetInt("SELECTED_SHIP");
+        //PlayerPrefs.GetInt("SELECTED_SHIP");
         selectShip.UpdateProperties();
         
         player.SetActive(true);

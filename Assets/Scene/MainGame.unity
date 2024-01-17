@@ -5556,6 +5556,10 @@ MonoBehaviour:
       assets: []
       saveData: 
   coinsCollected: 0
+  saveData:
+    key:
+    - 
+    value: 00000000
   selectShip: {fileID: 1977018460}
   gameOverMenu: {fileID: 1502566858}
 --- !u!1001 &271878659

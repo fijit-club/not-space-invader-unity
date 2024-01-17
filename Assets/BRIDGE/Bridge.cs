@@ -16,6 +16,12 @@ namespace NotSpaceInvaders
 #endif
     }
 
+    [Serializable]
+    public class SaveData
+    {
+        public List<string> key;
+        public List<int> value;
+    }
 
     [System.Serializable]
     public class Attributes
@@ -76,6 +82,8 @@ namespace NotSpaceInvaders
         public PlayerInfo thisPlayerInfo;
         private static Bridge instance;
         public int coinsCollected = 0;
+        public SaveData saveData;
+        
         [SerializeField] private SelectShip selectShip;
         [SerializeField] private GameOverMenu gameOverMenu;
         
@@ -108,6 +116,9 @@ namespace NotSpaceInvaders
 
         [DllImport("__Internal")]
         private static extern void vibrate(bool isLong);
+
+        [DllImport("__Internal")]
+        private static extern void setSavedata(string savedata);
 #endif
 
         public static Bridge GetInstance()
@@ -121,6 +132,25 @@ namespace NotSpaceInvaders
         WebGLInput.captureAllKeyboardInput = false;
         
 #endif
+        }
+       
+        
+        public void SaveData()
+        {
+            string jsonData = JsonUtility.ToJson(saveData);
+            
+#if UNITY_WEBGL && !UNITY_EDITOR
+            setSavedata(jsonData);
+#endif
+            
+            print("Data sent: " + jsonData);
+            
+        }
+
+        private void GetSavedData()
+        {
+            string saveDataJson = thisPlayerInfo.data.saveData;
+            saveData = JsonUtility.FromJson<SaveData>(saveDataJson);
         }
 
         private void Awake()
@@ -211,6 +241,7 @@ namespace NotSpaceInvaders
         {
             thisPlayerInfo = PlayerInfo.CreateFromJSON(json);
             Debug.Log(json);
+            GetSavedData();
 
             if (thisPlayerInfo.volumeSfx)
             {
@@ -302,13 +333,14 @@ namespace NotSpaceInvaders
             //Debug.Log(JsonUtility.ToJson( thisPlayerInfo.data));
             //Debug.Log( thisPlayerInfo.data);
             SendInitialData("{\"coins\":384696,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":949,\"data\":{\"assets\":[{\"id\":\"space-dual-shooter-ship\",\"attributes\":[]},{\"id\":\"space-triple-shooter-ship\",\"attributes\":[]}], \"saveData\":" +
-                            "\"TEST\"" +
+                            "\"\"" +
                             "}}");
         }
         [ContextMenu("Do Something2")]
         public void SendTextData2()
         {
             //SetShootSpeed(50);
+            Replay();
 
         }
 
