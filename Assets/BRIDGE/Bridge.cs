@@ -19,8 +19,8 @@ namespace NotSpaceInvaders
     [Serializable]
     public class SaveData
     {
-        public List<string> key;
-        public List<int> value;
+        public string key;
+        public int value;
     }
 
     [System.Serializable]

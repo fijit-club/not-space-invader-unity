@@ -28,7 +28,7 @@ public class BasicMainMenuComponents : InGameComponents
             _playerInitLocation = player.transform.position;
         }
 
-        selectShip.currentIndex = Bridge.GetInstance().saveData.value[0];
+        selectShip.currentIndex = Bridge.GetInstance().saveData.value;
         
         //PlayerPrefs.GetInt("SELECTED_SHIP");
         selectShip.UpdateProperties();
