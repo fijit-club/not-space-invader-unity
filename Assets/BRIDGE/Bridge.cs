@@ -223,6 +223,7 @@ namespace NotSpaceInvaders
             }
             
             selectShip.CheckShips();
+            selectShip.UpdateProperties();
             
             //Replay();
             //Events.CoinsCountChanged.Call();
