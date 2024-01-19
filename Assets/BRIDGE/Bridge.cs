@@ -135,15 +135,22 @@ namespace NotSpaceInvaders
         }
        
         
-        public void SaveData()
+        public void SaveData(int v)
         {
+            saveData.key = "SELECTED_SHIP";
+            saveData.value = v;
+            print("ASSIGNED KEY: " + saveData.key);
+            print("ASSIGNED VALUE: " + saveData.value);
+            
             string jsonData = JsonUtility.ToJson(saveData);
+            
+            print("DATA BEFORE SENDING: " + jsonData);
             
 #if UNITY_WEBGL && !UNITY_EDITOR
             setSavedata(jsonData);
 #endif
             
-            print("Data sent: " + jsonData);
+            print("DATA AFTER SENDING: " + jsonData);
             
         }
 
@@ -323,7 +330,7 @@ namespace NotSpaceInvaders
             thisPlayerInfo.data.assets.Add(addedAsset);
         }
 //  {\"key\":\"SELECTED_SHIP\",\"value\":1}
-        [ContextMenu("Do Something")]
+        [ContextMenu("Do initial")]
         public void SendTextData()
         {
             //SendInitialData("{\"coins\": 123,\"playerData\": {\"shootPower\":25,\"shootSpeed\":20}}");
@@ -333,11 +340,12 @@ namespace NotSpaceInvaders
             //Debug.Log(JsonUtility.ToJson( thisPlayerInfo.data));
             //Debug.Log( thisPlayerInfo.data);
             
-            string s = "{\"key\":\"SELECTED_SHIP\",\"value\":1}";
+            //string s = "\"{\\\"key\\\":\\\"SELECTED_SHIP\\\",\\\"value\\\":0}\"";
+            string s = "\"\"";
             
             SendInitialData("{\"coins\":384696,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":949,\"data\":{\"assets\":[{\"id\":\"space-dual-shooter-ship\",\"attributes\":[]},{\"id\":\"space-triple-shooter-ship\",\"attributes\":[]}], \"saveData\":" +
                             s +
-                                                            "}}");
+                            "}}");
         }
         [ContextMenu("Do Something2")]
         public void SendTextData2()

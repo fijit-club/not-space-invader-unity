@@ -5554,7 +5554,7 @@ MonoBehaviour:
     highScore: 0
     data:
       assets: []
-      saveData: '{"key":"SELECTED_SHIP","value":1}'
+      saveData: 
   coinsCollected: 0
   saveData:
     key: 
