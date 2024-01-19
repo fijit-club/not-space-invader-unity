@@ -19,7 +19,6 @@ namespace NotSpaceInvaders
     [Serializable]
     public class SaveData
     {
-        public string key;
         public int value;
     }
 
@@ -137,9 +136,7 @@ namespace NotSpaceInvaders
         
         public void SaveData(int v)
                 {
-                    saveData.key = "SELECTED_SHIP";
                     saveData.value = v;
-                    print("ASSIGNED KEY: " + saveData.key);
                     print("ASSIGNED VALUE: " + saveData.value);
                     
                     string jsonData = JsonUtility.ToJson(saveData);
