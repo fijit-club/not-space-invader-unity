@@ -135,17 +135,24 @@ namespace NotSpaceInvaders
         }
        
         
-        public void SaveData()
-        {
-            string jsonData = JsonUtility.ToJson(saveData);
-            
-#if UNITY_WEBGL && !UNITY_EDITOR
-            setSavedata(jsonData);
-#endif
-            
-            print("Data sent: " + jsonData);
-            
-        }
+        public void SaveData(int v)
+                {
+                    saveData.key = "SELECTED_SHIP";
+                    saveData.value = v;
+                    print("ASSIGNED KEY: " + saveData.key);
+                    print("ASSIGNED VALUE: " + saveData.value);
+                    
+                    string jsonData = JsonUtility.ToJson(saveData);
+                    
+                    print("DATA BEFORE SENDING: " + jsonData);
+                    
+        #if UNITY_WEBGL && !UNITY_EDITOR
+                    setSavedata(jsonData);
+        #endif
+                    
+                    print("DATA AFTER SENDING: " + jsonData);
+                    
+                }
 
         private void GetSavedData()
         {

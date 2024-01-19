@@ -8,12 +8,7 @@ public class MainMenu : MonoBehaviour
     
     public void StartGame()
     {
-        Bridge.GetInstance().saveData.key = "SELECTED_SHIP";
-        Bridge.GetInstance().saveData.value = selectShip.currentIndex;
-        Bridge.GetInstance().SaveData();
-        
-        PlayerPrefs.SetInt("SELECTED_SHIP", selectShip.currentIndex);
-        PlayerPrefs.Save();
+        Bridge.GetInstance().SaveData(selectShip.currentIndex);
         GameStateManager.ChangeState(playingState);
     }
 }
