@@ -322,7 +322,7 @@ namespace NotSpaceInvaders
         
             thisPlayerInfo.data.assets.Add(addedAsset);
         }
-
+//  {\"key\":\"SELECTED_SHIP\",\"value\":1}
         [ContextMenu("Do Something")]
         public void SendTextData()
         {
@@ -332,9 +332,12 @@ namespace NotSpaceInvaders
             //SendInitialData("{\"coins\": 3000,\"data\": null}");
             //Debug.Log(JsonUtility.ToJson( thisPlayerInfo.data));
             //Debug.Log( thisPlayerInfo.data);
+            
+            string s = "{\"key\":\"SELECTED_SHIP\",\"value\":1}";
+            
             SendInitialData("{\"coins\":384696,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":949,\"data\":{\"assets\":[{\"id\":\"space-dual-shooter-ship\",\"attributes\":[]},{\"id\":\"space-triple-shooter-ship\",\"attributes\":[]}], \"saveData\":" +
-                            "\"\"" +
-                            "}}");
+                            s +
+                                                            "}}");
         }
         [ContextMenu("Do Something2")]
         public void SendTextData2()
