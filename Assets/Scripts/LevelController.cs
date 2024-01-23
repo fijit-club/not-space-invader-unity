@@ -24,8 +24,8 @@ public class LevelController : MonoBehaviour
     public static int Coins;
     public static int Score;
     
-    [SerializeField] private TMP_Text scoreText;
-    [SerializeField] private TMP_Text coinText;
+    [SerializeField] private TMP_Text[] scoreText;
+    [SerializeField] private TMP_Text[] coinText;
     
     //Serializable classes implements
     public EnemyWaves[] enemyWaves; 
@@ -83,7 +83,8 @@ public class LevelController : MonoBehaviour
         score = 0;
         Coins = 0;
         Score = 0;
-        scoreText.text = score.ToString();
+        foreach (var st in scoreText)
+            st.text = score.ToString();
     }
     
     private void OnDisable()
@@ -95,8 +96,10 @@ public class LevelController : MonoBehaviour
     {
         score = Score;
         coins = Coins;
-        coinText.text =  Coins.ToString();
-        scoreText.text = score.ToString();
+        foreach (var ct in coinText)
+            ct.text = coins.ToString();
+        foreach (var st in scoreText)
+            st.text = score.ToString();
     }
     
     public void StartWaves()

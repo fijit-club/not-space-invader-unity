@@ -6,7 +6,7 @@ using System;
 using System.Runtime.InteropServices;
 using TMPro;
 
-namespace NotSpaceInvaders
+namespace FijitAddons
 {
     public class NativeAPI
     {
@@ -16,11 +16,6 @@ namespace NotSpaceInvaders
 #endif
     }
 
-    [Serializable]
-    public class SaveData
-    {
-        public int value;
-    }
 
     [System.Serializable]
     public class Attributes
@@ -28,20 +23,20 @@ namespace NotSpaceInvaders
         public string id;
         public int level;
     }
-    
+
     [System.Serializable]
     public class Asset
     {
         public string id;
         public Attributes[] attributes;
 
-        public Asset(string spaceshipId)
+        public Asset(string assetID)
         {
-            id = spaceshipId;
+            id = assetID;
 
         }
     }
-    
+
     [System.Serializable]
     public class Data
     {
@@ -55,9 +50,9 @@ namespace NotSpaceInvaders
         public int coins;
         public bool volumeBg = true;
         public bool volumeSfx = true;
-        public bool vibrationOn = true;
         public int highScore = 0;
         public Data data;
+       
         public static PlayerInfo CreateFromJSON(string jsonString)
         {
             return JsonUtility.FromJson<PlayerInfo>(jsonString);
@@ -66,28 +61,15 @@ namespace NotSpaceInvaders
 
 
 
-    //[System.Serializable]
-    //public class PlayerInfo
-    //{
-    //    public int coins;
-    //    public PlayerData playerData;
-    //    public static PlayerInfo CreateFromJSON(string jsonString)
-    //    {
-    //        return JsonUtility.FromJson<PlayerInfo>(jsonString);
-    //    }
-    //}
 
     public class Bridge : MonoBehaviour
     {
         public PlayerInfo thisPlayerInfo;
         private static Bridge instance;
         public int coinsCollected = 0;
-        public SaveData saveData;
-        
-        [SerializeField] private SelectShip selectShip;
-        [SerializeField] private GameOverMenu gameOverMenu;
-        
-        
+
+
+
 #if UNITY_WEBGL && !UNITY_EDITOR
         [DllImport("__Internal")]
         private static extern void setScore(int score);
@@ -112,61 +94,23 @@ namespace NotSpaceInvaders
         private static extern void load();
 
         [DllImport("__Internal")]
-        private static extern void restart();
+        private static extern void setSavedata(string savedata);
 
         [DllImport("__Internal")]
         private static extern void vibrate(bool isLong);
-
-        [DllImport("__Internal")]
-        private static extern void setSavedata(string savedata);
 #endif
 
         public static Bridge GetInstance()
         {
             return instance;
         }
-        
-        public void VibrateBridge(bool isLong)
-        {
-#if UNITY_WEBGL && !UNITY_EDITOR
-    if(thisPlayerInfo.volumeBg)
-      vibrate(isLong);
-#endif
-#if UNITY_EDITOR
-            if (thisPlayerInfo.volumeBg)
-                Debug.Log("vibrating device " + isLong);
-#endif
-        }
+
         private void Start()
         {
 #if !UNITY_EDITOR && UNITY_WEBGL
         WebGLInput.captureAllKeyboardInput = false;
         
 #endif
-        }
-       
-        
-        public void SaveData(int v)
-                {
-                    saveData.value = v;
-                    print("ASSIGNED VALUE: " + saveData.value);
-                    
-                    string jsonData = JsonUtility.ToJson(saveData);
-                    
-                    print("DATA BEFORE SENDING: " + jsonData);
-                    
-        #if UNITY_WEBGL && !UNITY_EDITOR
-                    setSavedata(jsonData);
-        #endif
-                    
-                    print("DATA AFTER SENDING: " + jsonData);
-                    
-                }
-
-        private void GetSavedData()
-        {
-            string saveDataJson = thisPlayerInfo.data.saveData;
-            saveData = JsonUtility.FromJson<SaveData>(saveDataJson);
         }
 
         private void Awake()
@@ -175,15 +119,17 @@ namespace NotSpaceInvaders
             {
                 instance = this;
                 DontDestroyOnLoad(this);
-            Debug.Log("Loaded");
+                Debug.Log("Loaded");
 #if UNITY_WEBGL && !UNITY_EDITOR
             load();
 #endif
-               
+
                 //SendInitSendInitialData("{ \"coins\": 6969, \"data\":{\"cars\": [{\"id\": \"default-car\"}]}   }");
             }
             else
                 Destroy(this);
+
+            GameLoaded();
 
 
         }
@@ -196,7 +142,7 @@ namespace NotSpaceInvaders
 #endif
         }
 
-        public void GameLoaded()
+        public void GameLoaded()// tells app game is ready to play
         {
 #if UNITY_WEBGL && !UNITY_EDITOR
             load();
@@ -247,17 +193,15 @@ namespace NotSpaceInvaders
             AudioListener.volume = 1;
         }
 
-        public void Replay()
+        public void Replay() // set funtion for game replay here 
         {
             coinsCollected = 0; // REPLAY GOES HERE
-            gameOverMenu.Replay();
         }
 
         public void SendInitialData(string json)
         {
             thisPlayerInfo = PlayerInfo.CreateFromJSON(json);
             Debug.Log(json);
-            GetSavedData();
 
             if (thisPlayerInfo.volumeSfx)
             {
@@ -268,33 +212,32 @@ namespace NotSpaceInvaders
                 Silence("true");
 
             }
-            
-            selectShip.CheckShips();
-            selectShip.UpdateProperties();
-            
+
+            //add initial asset check here 
+
             //Replay();
             //Events.CoinsCountChanged.Call();
         }
-
-        public void AddCoin()
-        {
-            thisPlayerInfo.coins++;
-        }
-
-        public void UpdateCoins(int value)
+        public void UpdateCoins(int value) //add buffer coisn to app at end of game 
         {
             thisPlayerInfo.coins += value;
             coinsCollected += value;
             if (value > 0)
             {
-            Debug.Log(value);
+                Debug.Log(value);
 #if UNITY_WEBGL && !UNITY_EDITOR
             updateCoins(coinsCollected);
 #endif
             }
         }
 
-        public void CollectCoins(int value)
+        public void AddCoin()// add single coin to 
+        {
+            thisPlayerInfo.coins++;
+        }
+
+
+        public void AddCoin(int value)//add coins to buffer 
         {
             thisPlayerInfo.coins += value;
             coinsCollected += value;
@@ -302,44 +245,28 @@ namespace NotSpaceInvaders
 
         }
 
-//         public void SetShootPower(int value)
-//         {
-//             string gameState = JsonUtility.ToJson(thisPlayerInfo.data);
-//             Debug.Log(gameState);
-//
-// #if UNITY_WEBGL && !UNITY_EDITOR
-//            upgradeAsset(thisPlayerInfo.data.cannons[0].id, thisPlayerInfo.data.cannons[0].attributes[1].id, thisPlayerInfo.data.cannons[0].attributes[1].level);
-// #endif
-//         }
-//         public void SetShootSpeed(int value)
-//         {
-//
-// #if UNITY_WEBGL && !UNITY_EDITOR
-//             upgradeAsset(thisPlayerInfo.data.cannons[0].id, thisPlayerInfo.data.cannons[0].attributes[0].id, thisPlayerInfo.data.cannons[0].attributes[0].level);
-// #endif
-//         }
 
-        public void BuySpaceship(string spaceshipID)
+        public void BuyAsset(string assetID)
         {
 #if UNITY_WEBGL && !UNITY_EDITOR
                     buyAsset(spaceshipID);
 #endif
-            AddSpaceship(spaceshipID);
+            AddAsset(assetID);
         }
 
-        public void AddSpaceship(string spaceshipID)
+        public void AddAsset(string assetID)
         {
-            Asset addedAsset = new Asset(spaceshipID);
-            addedAsset.id = spaceshipID;
-        
-        
-        
+            Asset addedAsset = new Asset(assetID);
+            addedAsset.id = assetID;
+
+
+
             Debug.Log("added new spaceship " + addedAsset.id);
-        
+
             thisPlayerInfo.data.assets.Add(addedAsset);
         }
 
-        [ContextMenu("Do Something")]
+        [ContextMenu("Send Initial Test")] //add initialdata tests here 
         public void SendTextData()
         {
             //SendInitialData("{\"coins\": 123,\"playerData\": {\"shootPower\":25,\"shootSpeed\":20}}");
@@ -348,15 +275,13 @@ namespace NotSpaceInvaders
             //SendInitialData("{\"coins\": 3000,\"data\": null}");
             //Debug.Log(JsonUtility.ToJson( thisPlayerInfo.data));
             //Debug.Log( thisPlayerInfo.data);
-            SendInitialData("{\"coins\":384696,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":949,\"data\":{\"assets\":[{\"id\":\"space-dual-shooter-ship\",\"attributes\":[]},{\"id\":\"space-triple-shooter-ship\",\"attributes\":[]}], \"saveData\":" +
-                            "\"\"" +
-                            "}}");
+            SendInitialData("{\"coins\":384696,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":949,\"data\":{\"assets\":[{\"id\":\"space-dual-shooter-ship\",\"attributes\":[]},{\"id\":\"test-spaceship-2\",\"attributes\":[]}],\"saveData\":\"saste nashe\"}}");
         }
+
         [ContextMenu("Do Something2")]
         public void SendTextData2()
         {
             //SetShootSpeed(50);
-            Replay();
 
         }
 
@@ -366,7 +291,7 @@ namespace NotSpaceInvaders
         }
 
 
-        public void Silence(string silence)
+        public void Silence(string silence)// called by app when goes in bg or is closed 
         {
             if (silence == "true")
                 AudioListener.pause = true;

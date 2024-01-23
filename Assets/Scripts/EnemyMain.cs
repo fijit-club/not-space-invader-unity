@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using NotSpaceInvaders;
+using UnityEngine;
 
 public abstract class EnemyMain : MonoBehaviour
 {
@@ -21,4 +22,12 @@ public abstract class EnemyMain : MonoBehaviour
     }
     
     public abstract void GetDamage(int damage, Vector3 position);
+    protected void Destruction()                           
+    {        
+        Instantiate(destructionVFX, transform.position, Quaternion.identity); 
+        LevelController.Coins++;
+        Destroy(gameObject);
+        if (GameToggles.VibrationOn)
+            Bridge.GetInstance().VibrateBridge(false);
+    }
 }

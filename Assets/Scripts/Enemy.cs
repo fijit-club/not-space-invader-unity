@@ -59,10 +59,4 @@ public class Enemy : EnemyMain
     }
 
     //method of destroying the 'Enemy'
-    void Destruction()                           
-    {        
-        Instantiate(destructionVFX, transform.position, Quaternion.identity); 
-        LevelController.Coins++;
-        Destroy(gameObject);
-    }
 }

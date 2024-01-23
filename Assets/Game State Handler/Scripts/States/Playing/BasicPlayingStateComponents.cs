@@ -6,18 +6,18 @@ using UnityEngine;
 public class BasicPlayingStateComponents : InGameComponents
 {
     [SerializeField] private GameObject[] gameObjectsToEnable;
-    [SerializeField] private GameObject inGameUI;
     
     [SerializeField] private MonoBehaviour[] componentsToEnable;
     [SerializeField] private GameObject[] gameObjectsToDisable;
     [SerializeField] private MonoBehaviour[] componentsToDisable;
-    [SerializeField] private TMP_Text highScoreText;
+    [SerializeField] private TMP_Text[] highScoreText;
     
     
     public override void EnteredState()
     {
-        highScoreText.text = Bridge.GetInstance().thisPlayerInfo.highScore.ToString();
-        inGameUI.SetActive(true);
+        foreach (var highScore in highScoreText)
+            highScore.text = Bridge.GetInstance().thisPlayerInfo.highScore.ToString();
+
         foreach (var go in gameObjectsToEnable)
             go.SetActive(true);
 

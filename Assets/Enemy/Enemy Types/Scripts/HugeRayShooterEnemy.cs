@@ -52,11 +52,4 @@ public class HugeRayShooterEnemy : EnemyMain
             levelC.StartSpawning();
             
     }
-
-    private void Destruction()                           
-    {        
-        Instantiate(destructionVFX, transform.position, Quaternion.identity); 
-        LevelController.Coins += 5;
-        Destroy(gameObject);
-    }
 }

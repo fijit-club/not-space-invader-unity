@@ -62,11 +62,4 @@ public class RotatingProjectileShooter : EnemyMain
         if (levelC.wavingIndex == 3)
             levelC.StartSpawning();
     }
-    
-    private void Destruction()                           
-    {        
-        Instantiate(destructionVFX, transform.position, Quaternion.identity); 
-        LevelController.Coins += 5;
-        Destroy(gameObject);
-    }
 }

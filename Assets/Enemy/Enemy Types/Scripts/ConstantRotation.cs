@@ -41,11 +41,4 @@ public class ConstantRotation : EnemyMain
         
         ReduceHealth();
     }
-
-    private void Destruction()                           
-    {        
-        Instantiate(destructionVFX, transform.position, Quaternion.identity); 
-        LevelController.Coins += 5;
-        Destroy(gameObject);
-    }
 }
