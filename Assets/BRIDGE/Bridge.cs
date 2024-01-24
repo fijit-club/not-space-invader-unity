@@ -285,7 +285,7 @@ namespace NotSpaceInvaders
         {
             thisPlayerInfo.coins += value;
             coinsCollected += value;
-            if (value > 0)
+            if (value >= 0)
             {
             Debug.Log(value);
 #if UNITY_WEBGL && !UNITY_EDITOR
