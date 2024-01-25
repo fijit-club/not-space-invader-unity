@@ -8310,7 +8310,7 @@ PrefabInstance:
     - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
         type: 3}
       propertyPath: coinText.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
         type: 3}
@@ -8347,6 +8347,11 @@ PrefabInstance:
       propertyPath: coinText.Array.data[1]
       value: 
       objectReference: {fileID: 8346638416474543567}
+    - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
+        type: 3}
+      propertyPath: coinText.Array.data[2]
+      value: 
+      objectReference: {fileID: 8346638415803335908}
     - target: {fileID: 114004447756405556, guid: 01cf4a33fc66cde4abc060ccfeadeb5a,
         type: 3}
       propertyPath: scoreText.Array.data[0]
