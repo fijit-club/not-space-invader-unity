@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 8346638416393329029}
-  mainMenuState: {fileID: 1117286896}
+  gameOverState: {fileID: 1341141582}
   levelController: {fileID: 741024732}
 --- !u!4 &184910091
 Transform:

@@ -4,7 +4,7 @@ using UnityEngine;
 public class PauseMenuControls : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuUI;
-    [SerializeField] private MainMenuState mainMenuState;
+    [SerializeField] private GameOverState gameOverState;
     [SerializeField] private LevelController levelController;
     
     public void PauseGame()
@@ -24,6 +24,6 @@ public class PauseMenuControls : MonoBehaviour
         Bridge.GetInstance().coinsCollected = levelController.coins;
         Bridge.GetInstance().SendScore(levelController.score);
         ResumeGame();
-        GameStateManager.ChangeState(mainMenuState);
+        GameStateManager.ChangeState(gameOverState);
     }
 }
