@@ -16,7 +16,7 @@ namespace NotSpaceInvaders
 #endif
     }
 
-    [Serializable]
+    [System.Serializable]
     public class SaveData
     {
         public int value;
@@ -151,7 +151,7 @@ namespace NotSpaceInvaders
                     saveData.value = v;
                     print("ASSIGNED VALUE: " + saveData.value);
                     
-                    string jsonData = JsonUtility.ToJson(saveData);
+                    string jsonData = JsonUtility.ToJson(saveData).ToString();
                     
                     print("DATA BEFORE SENDING: " + jsonData);
                     
@@ -348,9 +348,10 @@ namespace NotSpaceInvaders
             //SendInitialData("{\"coins\": 3000,\"data\": null}");
             //Debug.Log(JsonUtility.ToJson( thisPlayerInfo.data));
             //Debug.Log( thisPlayerInfo.data);
-            SendInitialData("{\"coins\":384696,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":949,\"data\":{\"assets\":[{\"id\":\"space-dual-shooter-ship\",\"attributes\":[]},{\"id\":\"space-triple-shooter-ship\",\"attributes\":[]}], \"saveData\":" +
-                            "\"\"" +
-                            "}}");
+            //SendInitialData("{\"coins\":384696,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":949,\"data\":{\"assets\":[{\"id\":\"space-dual-shooter-ship\",\"attributes\":[]},{\"id\":\"space-triple-shooter-ship\",\"attributes\":[]}], \"saveData\":" +
+                           // "\"\"" +
+                           // "}}"); 
+            SendInitialData("{\"coins\":14592,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":800,\"data\":{\"assets\":[{\"id\":\"space-dual-shooter-ship\",\"attributes\":[]}],\"saveData\":\"\"}}");
         }
         [ContextMenu("Do Something2")]
         public void SendTextData2()
