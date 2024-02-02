@@ -5,6 +5,7 @@ using System.Collections;
 using System;
 using System.Runtime.InteropServices;
 using TMPro;
+using Newtonsoft.Json;
 
 namespace NotSpaceInvaders
 {
@@ -151,8 +152,8 @@ namespace NotSpaceInvaders
                     saveData.value = v;
                     print("ASSIGNED VALUE: " + saveData.value);
                     
-                    string jsonData = JsonUtility.ToJson(saveData);
-                    
+                    string jsonData = JsonConvert.SerializeObject(saveData);
+
                     print("DATA BEFORE SENDING: " + jsonData);
                     
         #if UNITY_WEBGL && !UNITY_EDITOR
