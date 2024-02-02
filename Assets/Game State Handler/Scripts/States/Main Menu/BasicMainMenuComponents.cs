@@ -28,11 +28,6 @@ public class BasicMainMenuComponents : InGameComponents
             _playerInitLocation = player.transform.position;
         }
 
-        selectShip.currentIndex = Bridge.GetInstance().saveData.value;
-        
-        //PlayerPrefs.GetInt("SELECTED_SHIP");
-        selectShip.UpdateProperties();
-        
         player.SetActive(true);
         player.transform.position = _playerInitLocation;
 
@@ -48,6 +43,8 @@ public class BasicMainMenuComponents : InGameComponents
         foreach (var component in componentsToDisable)
             component.enabled = false;
     }
+
+    
 
     public override void LeftState()
     {

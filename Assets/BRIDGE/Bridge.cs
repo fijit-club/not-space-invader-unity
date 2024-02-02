@@ -21,6 +21,7 @@ namespace NotSpaceInvaders
     public class SaveData
     {
         public int value;
+        public int value2;
     }
 
     [System.Serializable]
@@ -47,7 +48,7 @@ namespace NotSpaceInvaders
     public class Data
     {
         public List<Asset> assets;
-        public string saveData;
+        public SaveData saveData;
     }
 
     [System.Serializable]
@@ -150,7 +151,9 @@ namespace NotSpaceInvaders
         public void SaveData(int v)
                 {
                     saveData.value = v;
-                    print("ASSIGNED VALUE: " + saveData.value);
+                    saveData.value2 = v + 3;
+                    print("FIRST VALUE: " + saveData.value);
+                    print("SECOND VALUE: " + saveData.value2);
                     
                     string jsonData = JsonConvert.SerializeObject(saveData);
 
@@ -166,8 +169,6 @@ namespace NotSpaceInvaders
 
         private void GetSavedData()
         {
-            string saveDataJson = thisPlayerInfo.data.saveData;
-            saveData = JsonUtility.FromJson<SaveData>(saveDataJson);
         }
 
         private void Awake()
@@ -247,6 +248,14 @@ namespace NotSpaceInvaders
             //SoundManager.Unmute();
             AudioListener.volume = 1;
         }
+        
+        private void UpdateShipProperties()
+        {
+            selectShip.currentIndex = thisPlayerInfo.data.saveData.value;
+
+            //PlayerPrefs.GetInt("SELECTED_SHIP");
+            selectShip.UpdateProperties();
+        }
 
         public void Replay()
         {
@@ -258,7 +267,7 @@ namespace NotSpaceInvaders
         {
             thisPlayerInfo = PlayerInfo.CreateFromJSON(json);
             Debug.Log(json);
-            GetSavedData();
+            //GetSavedData();
 
             if (thisPlayerInfo.volumeSfx)
             {
@@ -270,8 +279,9 @@ namespace NotSpaceInvaders
 
             }
             
+            
             selectShip.CheckShips();
-            selectShip.UpdateProperties();
+            UpdateShipProperties();
             
             //Replay();
             //Events.CoinsCountChanged.Call();
@@ -349,9 +359,7 @@ namespace NotSpaceInvaders
             //SendInitialData("{\"coins\": 3000,\"data\": null}");
             //Debug.Log(JsonUtility.ToJson( thisPlayerInfo.data));
             //Debug.Log( thisPlayerInfo.data);
-            SendInitialData("{\"coins\":384696,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":949,\"data\":{\"assets\":[{\"id\":\"space-dual-shooter-ship\",\"attributes\":[]},{\"id\":\"space-triple-shooter-ship\",\"attributes\":[]}], \"saveData\":" +
-                            "\"\"" +
-                            "}}");
+            SendInitialData("{\"coins\":655,\"volumeBg\":true,\"volumeSfx\":true,\"highScore\":10,\"data\":{\"assets\":[],\"saveData\":{\"value\":2, \"value2\":3}}}");
         }
         [ContextMenu("Do Something2")]
         public void SendTextData2()
